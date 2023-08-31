@@ -13,7 +13,7 @@ public class START extends JFrame {
 //	private Image screenImage;
 //	private Graphics screenGraphic;
 	
-	private Image mainScreen = new ImageIcon(Main.class.getResource("../image/Main_Screen_1.png")).getImage();
+	private Image mainScreen = new ImageIcon(Main.class.getResource("../image/Main_Screen.png")).getImage();
 	
 	private ImageIcon joinBtn = new ImageIcon(Main.class.getResource("../image/Main_Join_Button.png"));
 	private ImageIcon loginBtn = new ImageIcon(Main.class.getResource("../image/Main_Login_Button.png"));
