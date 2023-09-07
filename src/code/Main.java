@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// new start();
-//		new START_MAIN();
+		new START_MAIN();
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // START_MAIN 클래스의 인스턴스 생성
@@ -16,6 +16,14 @@ public class Main {
                 // START_MAIN 클래스의 생성자 호출
             }
         });
+		
+//		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                // START_MAIN 클래스의 인스턴스 생성
+//                Student_Login startMain = new Student_Login();
+//                // START_MAIN 클래스의 생성자 호출
+//            }
+//        });
 		
 	}
 

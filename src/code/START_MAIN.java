@@ -24,6 +24,11 @@ public class START_MAIN extends InheritanceFrame {
         	new Student_Join().setVisible(true);
         });
         
+        loginbtn.addActionListener(e -> {
+        	dispose();
+        	new Student_Login().setVisible(true);
+        });
+        
     }
     
     // 버튼 설정 메소드
