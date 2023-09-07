@@ -7,7 +7,15 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		new START();
+		// new start();
+//		new START_MAIN();
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                // START_MAIN 클래스의 인스턴스 생성
+                START_MAIN startMain = new START_MAIN();
+                // START_MAIN 클래스의 생성자 호출
+            }
+        });
 		
 	}
 
