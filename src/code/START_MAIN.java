@@ -5,8 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class START_MAIN extends InheritanceFrame {
-    private JButton joinbtn = new JButton(new ImageIcon(getClass().getResource("/image/Main_Join_Button.png")));
-    private JButton loginbtn = new JButton(new ImageIcon(getClass().getResource("/image/Main_Login_Button.png")));
+    private JButton joinbtn = new JButton();
+    private JButton loginbtn = new JButton();
     
     public START_MAIN() {
         super("SIGN - UP", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -18,6 +18,12 @@ public class START_MAIN extends InheritanceFrame {
         JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/MainScreen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        joinbtn.addActionListener(e -> {
+        	dispose();
+        	new Student_Join().setVisible(true);
+        });
+        
     }
     
     // 버튼 설정 메소드

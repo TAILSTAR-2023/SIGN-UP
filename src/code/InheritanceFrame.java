@@ -13,10 +13,10 @@ import javax.swing.JPanel;
 public class InheritanceFrame extends JFrame {
 	
 	public InheritanceFrame(String title, int w, int h) {
-		setTitle(title);
-		setSize(w, h);
-		setResizable(false); // 창의 크기 변경 못하도록
-//		setLocationRelativeTo(null);
+		setTitle(title); // 프레임 제목 설정
+		setSize(w, h); // 프레임 크기 설정
+		setResizable(false); // 창의 크기 변경 못하도록 설정
+		setLocationRelativeTo(null); // 프레임을 화면 중앙에 배치
 		setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
