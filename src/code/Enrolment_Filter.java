@@ -9,22 +9,38 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Student_Login extends InheritanceFrame {
+public class Enrolment_Filter extends InheritanceFrame {
 	
-	private JButton loginbtn = new JButton();
-	private JTextField idtx = new JTextField();
-	private JTextField pwtx = new JTextField();
 	
-	public Student_Login() {
-		super("STUDENT LOGIN", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+	private JButton exitbtn = new JButton();
+	private JButton searchbtn = new JButton();
+	
+	private JTextField majortx = new JTextField();
+	private JTextField courseNtx = new JTextField();
+	private JTextField subjectNtx = new JTextField();
+	private JTextField professorNtx = new JTextField();
+	private JTextField gradetx = new JTextField();
+	private JTextField divisiontx = new JTextField();
+	private JTextField classificationtx = new JTextField();
+	private JTextField favoritestx = new JTextField();
+	
+	public Enrolment_Filter() {
+		super("ENROLMENT FILTER", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setLayout(null);
 		
-		JButtonStyle(loginbtn, 400, 530, "Login_Screen_Login_Button.png");
+		JButtonStyle(exitbtn, -150, 25, "Enrolment_Filter_Screen_Exit_Button.png");
+		JButtonStyle(searchbtn, 450, 625, "Enrolment_Filter_Screen_Search_Button.png");
 		
-		TextFieldStyle(idtx, 285);
-		TextFieldStyle(pwtx, 410);
+		TextFieldStyle(majortx, 140);
+		TextFieldStyle(courseNtx, 200);
+		TextFieldStyle(subjectNtx, 260);
+		TextFieldStyle(professorNtx, 320);
+		TextFieldStyle(gradetx, 380);
+		TextFieldStyle(divisiontx, 440);
+		TextFieldStyle(classificationtx, 500);
+		TextFieldStyle(favoritestx, 570);
 		
-		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Login_Screen.png")));
+		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Filter_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
 	}
@@ -41,9 +57,9 @@ public class Student_Login extends InheritanceFrame {
     
     // 텍스트필드 설정 메소드
     private JTextField TextFieldStyle(JTextField textField, int x) {
-        textField.setBounds(450, x, 550, 50);
+        textField.setBounds(530, x, 495, 43);
         textField.setBackground(Color.decode("#EDE6DA"));
-        textField.setFont(new Font("SUITE", Font.PLAIN, 20));
+        textField.setFont(new Font("SUITE", Font.PLAIN, 18));
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);
         return textField;
