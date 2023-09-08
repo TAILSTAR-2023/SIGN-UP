@@ -18,7 +18,7 @@ public class Main {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // START_MAIN 클래스의 인스턴스 생성
-                Enrolment startMain = new Enrolment();
+            	Student_Management startMain = new Student_Management();
                 // START_MAIN 클래스의 생성자 호출
             }
         });

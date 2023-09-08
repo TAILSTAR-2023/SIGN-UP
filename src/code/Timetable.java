@@ -1,28 +1,21 @@
 package code;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-public class Enrolment extends InheritanceFrame {
+public class Timetable extends InheritanceFrame {
+
+	private JButton backbtn = new JButton();
+	private JButton completebtn = new JButton();
 	
-	private JButton filterbtn = new JButton();
-	private JButton refreshbtn = new JButton();
-	private JButton previewbtn = new JButton();
-	
-	public Enrolment() {
-		super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+	public Timetable() {
+		super("TIMETABLE", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
-		JButtonStyle(filterbtn, -150, 25, "Enrolment_Screen_Filter_Button.png");
-		JButtonStyle(refreshbtn, 750, 25, "Enrolment_Screen_Refresh_Button.png");
-		JButtonStyle(previewbtn, 915, 25, "Enrolment_Screen_Preview_Button.png");
+		JButtonStyle(backbtn, 750, 30, "Timetable_Screen_Back_Button.png");
+		JButtonStyle(completebtn, 915, 30, "Timetable_Screen_Complete_Button.png");
 		
-		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Screen.png")));
+		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Timetable_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
 	}
@@ -36,5 +29,5 @@ public class Enrolment extends InheritanceFrame {
         button.setBounds(x, y, 500, 53); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 53
         add(button); // 프레임 추가
     }
-
+	
 }
