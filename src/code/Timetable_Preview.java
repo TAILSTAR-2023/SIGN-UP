@@ -1,28 +1,21 @@
 package code;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-public class Enrolment extends InheritanceFrame {
+public class Timetable_Preview extends InheritanceFrame {
 	
-	private JButton filterbtn = new JButton();
-	private JButton refreshbtn = new JButton();
-	private JButton previewbtn = new JButton();
+	private JButton backbtn = new JButton();
+	private JButton completebtn = new JButton();
 	
-	public Enrolment() {
-		super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+	public Timetable_Preview() {
+		super("TIMETABLE PREVIEW", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
-		JButtonStyle(filterbtn, -160, 20, "Enrolment_Screen_Filter_Button.png");
-		JButtonStyle(refreshbtn, 755, 20, "Enrolment_Screen_Refresh_Button.png");
-		JButtonStyle(previewbtn, 920, 20, "Enrolment_Screen_Preview_Button.png");
+		JButtonStyle(backbtn, 755, 20, "Timetable_Preview_Screen_Back_Button.png");
+		JButtonStyle(completebtn, 920, 20, "Timetable_Preview_Screen_Complete_Button.png");
 		
-		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Screen.png")));
+		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Timetable_Preview_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
 	}

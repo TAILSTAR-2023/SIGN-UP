@@ -28,8 +28,8 @@ public class Enrolment_Filter extends InheritanceFrame {
 		super("ENROLMENT FILTER", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setLayout(null);
 		
-		JButtonStyle(exitbtn, -150, 25, "Enrolment_Filter_Screen_Exit_Button.png");
-		JButtonStyle(searchbtn, 450, 625, "Enrolment_Filter_Screen_Search_Button.png");
+		JButtonStyle(exitbtn, -160, 20, "Enrolment_Filter_Screen_Exit_Button.png");
+		JButtonStyle(searchbtn, 450, 620, "Enrolment_Filter_Screen_Search_Button.png");
 		
 		TextFieldStyle(majortx, 140);
 		TextFieldStyle(courseNtx, 200);
@@ -51,14 +51,14 @@ public class Enrolment_Filter extends InheritanceFrame {
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
         button.setFocusPainted(false); // 포커스 받을 때 테두리 표시되지 않도록 설정
-        button.setBounds(x, y, 500, 53); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 53
+        button.setBounds(x, y, 500, 65); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 65
         add(button); // 프레임 추가
     }
     
     // 텍스트필드 설정 메소드
     private JTextField TextFieldStyle(JTextField textField, int x) {
         textField.setBounds(530, x, 495, 43);
-        textField.setBackground(Color.decode("#EDE6DA"));
+        textField.setBackground(Color.decode("#C8C9DA"));
         textField.setFont(new Font("SUITE", Font.PLAIN, 18));
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);

@@ -9,40 +9,27 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Lecture_Management extends InheritanceFrame {
+public class Professor_Login extends InheritanceFrame {
 	
-	private JButton backbtn = new JButton();
-	private JButton completebtn = new JButton();
+	private JButton loginbtn = new JButton();
+	private JTextField idtx = new JTextField();
+	private JTextField pwtx = new JTextField();
 	
-	private JTextField majortx = new JTextField();
-	private JTextField courseNtx = new JTextField();
-	private JTextField subjectNtx = new JTextField();
-	private JTextField professorNtx = new JTextField();
-	private JTextField gradetx = new JTextField();
-	private JTextField divisiontx = new JTextField();
-	private JTextField classificationtx = new JTextField();
-	
-    public Lecture_Management() {
-    	super("LECTURE MANAGEMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
-    	setLayout(null);
-    	
-    	JButtonStyle(backbtn, 755, 20, "Enrolment_Management_Screen_Back_Button.png");
-    	JButtonStyle(completebtn, 920, 20, "Lecture_Management_Screen_Complete_Button.png");
-    	
-    	TextFieldStyle(majortx, 180);
-		TextFieldStyle(courseNtx, 240);
-		TextFieldStyle(subjectNtx, 300);
-		TextFieldStyle(professorNtx, 360);
-		TextFieldStyle(gradetx, 420);
-		TextFieldStyle(divisiontx, 480);
-		TextFieldStyle(classificationtx, 545);
+	public Professor_Login() {
+		super("PROFESSOR LOGIN", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		setLayout(null);
 		
-		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Lecture_Management_Screen.png")));
+		JButtonStyle(loginbtn, 400, 530, "Professor_LogIn_Screen_Login_Button.png");
+		
+		TextFieldStyle(idtx, 285);
+		TextFieldStyle(pwtx, 410);
+		
+		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Login_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
-    }
-    
-    // 버튼 설정 메소드
+	}
+	
+	// 버튼 설정 메소드
     private void JButtonStyle(JButton button, int x, int y, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName))); // 버튼 이미지 아이콘 설정
         button.setBorderPainted(false); // 버튼 테두리 제거 
@@ -54,11 +41,12 @@ public class Lecture_Management extends InheritanceFrame {
     
     // 텍스트필드 설정 메소드
     private JTextField TextFieldStyle(JTextField textField, int x) {
-        textField.setBounds(550, x, 450, 55);
+        textField.setBounds(500, x, 450, 55);
         textField.setBackground(Color.decode("#D1D9E4"));
         textField.setFont(new Font("SUITE", Font.PLAIN, 18));
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);
         return textField;
     }
+
 }
