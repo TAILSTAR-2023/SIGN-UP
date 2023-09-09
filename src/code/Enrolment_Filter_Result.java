@@ -1,28 +1,20 @@
 package code;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-public class Enrolment extends InheritanceFrame {
+public class Enrolment_Filter_Result extends InheritanceFrame {
 	
-	private JButton filterbtn = new JButton();
-	private JButton refreshbtn = new JButton();
-	private JButton previewbtn = new JButton();
+	private JButton backbtn = new JButton();
 	
-	public Enrolment() {
-		super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+	public Enrolment_Filter_Result() {
+		super("ENROLMENT FILTER RESUIT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+		setLayout(null);
 		
-		JButtonStyle(filterbtn, -160, 20, "Enrolment_Screen_Filter_Button.png");
-		JButtonStyle(refreshbtn, 755, 20, "Enrolment_Screen_Refresh_Button.png");
-		JButtonStyle(previewbtn, 920, 20, "Enrolment_Screen_Preview_Button.png");
+		JButtonStyle(backbtn, -160, 20, "Enrolment_Filter_Screen_Back_Button.png");
 		
-		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Screen.png")));
+		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Filter_Result_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
 	}

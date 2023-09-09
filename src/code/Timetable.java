@@ -6,13 +6,11 @@ import javax.swing.JLabel;
 
 public class Timetable extends InheritanceFrame {
 
-	private JButton backbtn = new JButton();
 	private JButton completebtn = new JButton();
 	
 	public Timetable() {
 		super("TIMETABLE", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
-		JButtonStyle(backbtn, 750, 30, "Timetable_Screen_Back_Button.png");
 		JButtonStyle(completebtn, 915, 30, "Timetable_Screen_Complete_Button.png");
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Timetable_Screen.png")));
@@ -26,7 +24,7 @@ public class Timetable extends InheritanceFrame {
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
         button.setFocusPainted(false); // 포커스 받을 때 테두리 표시되지 않도록 설정
-        button.setBounds(x, y, 500, 53); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 53
+        button.setBounds(x, y, 500, 65); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 65
         add(button); // 프레임 추가
     }
 	
