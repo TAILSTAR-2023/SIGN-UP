@@ -16,6 +16,12 @@ public class Timetable extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Timetable_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        completebtn.addActionListener(e -> {
+        	dispose();
+        	new Student().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

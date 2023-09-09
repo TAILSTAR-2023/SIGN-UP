@@ -17,6 +17,12 @@ public class Enrolment_Filter_Result extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Filter_Result_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        backbtn.addActionListener(e -> {
+        	dispose();
+        	new Enrolment_Filter().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

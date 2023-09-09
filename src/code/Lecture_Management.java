@@ -40,6 +40,17 @@ public class Lecture_Management extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Lecture_Management_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        backbtn.addActionListener(e -> {
+        	dispose();
+        	new Professor().setVisible(true);
+        });
+        
+        completebtn.addActionListener(e -> {
+        	dispose();
+        	new Professor().setVisible(true);
+        });
+        
     }
     
     // 버튼 설정 메소드

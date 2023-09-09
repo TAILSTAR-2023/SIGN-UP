@@ -25,6 +25,17 @@ public class Enrolment extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        filterbtn.addActionListener(e -> {
+        	dispose();
+        	new Enrolment_Filter().setVisible(true);
+        });
+        
+        previewbtn.addActionListener(e -> {
+        	dispose();
+        	new Timetable_Preview().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

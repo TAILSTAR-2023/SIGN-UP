@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 public class Professor_Login extends InheritanceFrame {
 	
 	private JButton loginbtn = new JButton();
+	
 	private JTextField idtx = new JTextField();
 	private JTextField pwtx = new JTextField();
 	
@@ -27,6 +28,12 @@ public class Professor_Login extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Login_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        loginbtn.addActionListener(e -> {
+        	dispose();
+        	new Professor().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

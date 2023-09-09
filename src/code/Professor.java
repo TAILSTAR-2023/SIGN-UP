@@ -22,6 +22,27 @@ public class Professor extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        joinbtn.addActionListener(e -> {
+        	dispose();
+        	new Professor_Join().setVisible(true);
+        });
+        
+        loginbtn.addActionListener(e -> {
+        	dispose();
+        	new Professor_Login().setVisible(true);
+        });
+        
+        lcmbtn.addActionListener(e -> {
+        	dispose();
+        	new Lecture_Management().setVisible(true);
+        });
+        
+        stmbtn.addActionListener(e -> {
+        	dispose();
+        	new Student_Management().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

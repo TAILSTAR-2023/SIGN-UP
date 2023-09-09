@@ -16,6 +16,7 @@ public class Student_Join extends InheritanceFrame {
 	
 	private JButton doublecheckbtn = new JButton();
 	private JButton completebtn = new JButton();
+	
 	private JTextField nametx = new JTextField();
 	private JTextField idtx = new JTextField();
 	private JPasswordField pwtx = new JPasswordField();
@@ -40,6 +41,11 @@ public class Student_Join extends InheritanceFrame {
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
 		
+        completebtn.addActionListener(e -> {
+        	dispose();
+        	new Student().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

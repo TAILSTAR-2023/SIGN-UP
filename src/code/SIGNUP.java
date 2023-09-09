@@ -19,16 +19,16 @@ public class SIGNUP extends InheritanceFrame {
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-//        joinbtn.addActionListener(e -> {
-//        	dispose();
-//        	new Student_Join().setVisible(true);
-//        });
-//        
-//        loginbtn.addActionListener(e -> {
-//        	dispose();
-//        	new Student_Login().setVisible(true);
-//        });
+        professorbtn.addActionListener(e -> {
+        	dispose();
+        	new Professor().setVisible(true);
+        });
         
+        studentbtn.addActionListener(e -> {
+        	dispose();
+        	new Student().setVisible(true);
+        });
+
     }
     
     // 버튼 설정 메소드
