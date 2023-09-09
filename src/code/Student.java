@@ -24,6 +24,32 @@ public class Student extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Student_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        joinbtn.addActionListener(e -> {
+        	dispose();
+        	new Student_Join().setVisible(true);
+        });
+        
+        loginbtn.addActionListener(e -> {
+        	dispose();
+        	new Student_Login().setVisible(true);
+        });
+        
+        filterbtn.addActionListener(e -> {
+        	dispose();
+        	new Enrolment_Filter().setVisible(true);
+        });
+        
+        enrolmentbtn.addActionListener(e -> {
+        	dispose();
+        	new Enrolment().setVisible(true);
+        });
+        
+        timetablebtn.addActionListener(e -> {
+        	dispose();
+        	new Timetable().setVisible(true);
+        });
+        
 	}
 
 	// 버튼 설정 메소드

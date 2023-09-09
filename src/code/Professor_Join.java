@@ -15,6 +15,7 @@ public class Professor_Join extends InheritanceFrame {
 	
 	private JButton doublecheckbtn = new JButton();
 	private JButton completebtn = new JButton();
+	
 	private JTextField nametx = new JTextField();
 	private JTextField idtx = new JTextField();
 	private JPasswordField pwtx = new JPasswordField();
@@ -38,6 +39,12 @@ public class Professor_Join extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Join_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        completebtn.addActionListener(e -> {
+        	dispose();
+        	new Professor().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드

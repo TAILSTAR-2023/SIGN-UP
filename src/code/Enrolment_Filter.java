@@ -28,7 +28,7 @@ public class Enrolment_Filter extends InheritanceFrame {
 		super("ENROLMENT FILTER", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setLayout(null);
 		
-		JButtonStyle(exitbtn, -160, 20, "Enrolment_Filter_Screen_Exit_Button.png");
+		JButtonStyle(exitbtn, -160, 20, "Enrolment_Filter_Screen_Back_Button.png");
 		JButtonStyle(searchbtn, 450, 620, "Enrolment_Filter_Screen_Search_Button.png");
 		
 		TextFieldStyle(majortx, 140);
@@ -43,6 +43,17 @@ public class Enrolment_Filter extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Filter_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        exitbtn.addActionListener(e -> {
+        	dispose();
+        	new Student().setVisible(true);
+        });
+        
+        searchbtn.addActionListener(e -> {
+        	dispose();
+        	new Enrolment_Filter_Result().setVisible(true);
+        });
+        
 	}
 	
 	// 버튼 설정 메소드
