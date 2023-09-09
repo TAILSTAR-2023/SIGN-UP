@@ -4,30 +4,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class START_MAIN extends InheritanceFrame {
-    private JButton joinbtn = new JButton();
-    private JButton loginbtn = new JButton();
+public class SIGNUP extends InheritanceFrame {
+    private JButton professorbtn = new JButton();
+    private JButton studentbtn = new JButton();
     
-    public START_MAIN() {
+    public SIGNUP() {
         super("SIGN - UP", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         setLayout(null);
         
-        JButtonStyle(joinbtn, 415, 400, "Main_Join_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
-        JButtonStyle(loginbtn, 415, 500, "Main_Login_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
+        JButtonStyle(professorbtn, 415, 400, "Main_Professor_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
+        JButtonStyle(studentbtn, 415, 500, "Main_Student_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
         
-        JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/MainScreen.png")));
+        JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Main_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-        joinbtn.addActionListener(e -> {
-        	dispose();
-        	new Student_Join().setVisible(true);
-        });
-        
-        loginbtn.addActionListener(e -> {
-        	dispose();
-        	new Student_Login().setVisible(true);
-        });
+//        joinbtn.addActionListener(e -> {
+//        	dispose();
+//        	new Student_Join().setVisible(true);
+//        });
+//        
+//        loginbtn.addActionListener(e -> {
+//        	dispose();
+//        	new Student_Login().setVisible(true);
+//        });
         
     }
     
