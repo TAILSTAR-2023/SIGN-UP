@@ -9,7 +9,7 @@ public class Main {
 		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            	Timetable_Preview startMain = new Timetable_Preview();
+            	Enrolment_Cart startMain = new Enrolment_Cart();
             }
         });
 		
