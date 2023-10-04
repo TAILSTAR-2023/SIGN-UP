@@ -7,7 +7,6 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-//import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class InheritanceFrame extends JFrame {
@@ -43,4 +42,5 @@ class ImgScreen extends JPanel {
         super.paintComponent(g);
         g.drawImage(img, 0, 0, this);
     }
+    
 }

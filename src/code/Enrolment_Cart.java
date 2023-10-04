@@ -4,32 +4,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class Enrolment extends InheritanceFrame {
+public class Enrolment_Cart extends InheritanceFrame {
 	
-	private JButton filterbtn = new JButton();
-	private JButton refreshbtn = new JButton();
-	private JButton previewbtn = new JButton();
+	private JButton enrolmentbtn = new JButton();
+	private JButton exitbtn = new JButton();
 	
-	public Enrolment() {
-		super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+	public Enrolment_Cart() {
+		super ("ENROLMENT CART", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
-		JButtonStyle(filterbtn, -160, 20, "Enrolment_Screen_Filter_Button.png");
-		JButtonStyle(refreshbtn, 755, 20, "Enrolment_Screen_Refresh_Button.png");
-		JButtonStyle(previewbtn, 920, 20, "Enrolment_Screen_Preview_Button.png");
+		JButtonStyle(enrolmentbtn, 755, 20, "Enrolment_Cart_Screen_enrolment_Button.png");
+		JButtonStyle(exitbtn, 920, 20, "Enrolment_Cart_Screen_exit_Button.png");
 		
-		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Screen.png")));
+		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Enrolment_Cart_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-        filterbtn.addActionListener(e -> {
+        enrolmentbtn.addActionListener(e -> {
         	dispose();
-        	new Enrolment_Filter().setVisible(true);
+        	new Enrolment().setVisible(true);
+//        	System.out.println("Enrolment button clicked and Student frame is opened.");
         });
         
-        previewbtn.addActionListener(e -> {
+        exitbtn.addActionListener(e -> {
+        	// System.out.println("Exit button clicked"); // 디버깅 메시지 추가
         	dispose();
-        	new Timetable_Preview().setVisible(true);
-        	System.out.println("미리보기 창 나옴");
+        	new Student().setVisible(true);
+        	System.out.println("Exit button clicked and Student frame is opened.");
         });
         
 	}

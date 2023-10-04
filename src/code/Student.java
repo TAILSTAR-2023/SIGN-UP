@@ -10,7 +10,7 @@ public class Student extends InheritanceFrame {
 	private JButton loginbtn = new JButton();
 	private JButton filterbtn = new JButton();
 	private JButton enrolmentbtn = new JButton();
-	private JButton timetablebtn = new JButton();
+	private JButton lecturecartbtn = new JButton();
 	
 	public Student() {
 		super("STUDENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -19,7 +19,7 @@ public class Student extends InheritanceFrame {
 		JButtonStyle(loginbtn, 415, 500, 450, 65, "Student_Screen_Login_Button.png");
 		JButtonStyle(filterbtn, 870, 35, 100, 100, "Student_Screen_Filter_Button.png");
 		JButtonStyle(enrolmentbtn, 1000, 35, 100, 100, "Student_Screen_Enrolment_Button.png");
-		JButtonStyle(timetablebtn, 1130, 35, 100, 100, "Student_Screen_Timetable_Button.png");
+		JButtonStyle(lecturecartbtn, 1130, 35, 100, 100, "Student_Screen_Lecture_Cart_Button.png");
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Student_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -45,9 +45,9 @@ public class Student extends InheritanceFrame {
         	new Enrolment().setVisible(true);
         });
         
-        timetablebtn.addActionListener(e -> {
+        lecturecartbtn.addActionListener(e -> {
         	dispose();
-        	new Timetable().setVisible(true);
+        	new Enrolment_Cart().setVisible(true);
         });
         
 	}

@@ -54,4 +54,5 @@ public class Professor extends InheritanceFrame {
         button.setBounds(x, y, w, h); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 w, 세로 h
         add(button); // 프레임 추가
     }
+    
 }
