@@ -1,13 +1,8 @@
 package code;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 public class Enrolment extends InheritanceFrame {
 	
@@ -34,6 +29,7 @@ public class Enrolment extends InheritanceFrame {
         previewbtn.addActionListener(e -> {
         	dispose();
         	new Timetable_Preview().setVisible(true);
+        	System.out.println("미리보기 창 나옴");
         });
         
 	}

@@ -22,12 +22,16 @@ public class Enrolment_Cart extends InheritanceFrame {
         enrolmentbtn.addActionListener(e -> {
         	dispose();
         	new Enrolment().setVisible(true);
+//        	System.out.println("Enrolment button clicked and Student frame is opened.");
         });
         
         exitbtn.addActionListener(e -> {
+        	// System.out.println("Exit button clicked"); // 디버깅 메시지 추가
         	dispose();
         	new Student().setVisible(true);
+        	System.out.println("Exit button clicked and Student frame is opened.");
         });
+        
 	}
 	
 	// 버튼 설정 메소드

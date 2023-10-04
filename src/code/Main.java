@@ -9,7 +9,7 @@ public class Main {
 		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            	Enrolment_Cart startMain = new Enrolment_Cart();
+            	SIGNUP startMain = new SIGNUP();
             }
         });
 		

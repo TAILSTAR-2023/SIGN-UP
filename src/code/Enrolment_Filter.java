@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 public class Enrolment_Filter extends InheritanceFrame {
 	
-	
 	private JButton exitbtn = new JButton();
 	private JButton searchbtn = new JButton();
 	

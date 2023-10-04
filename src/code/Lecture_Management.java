@@ -72,4 +72,5 @@ public class Lecture_Management extends InheritanceFrame {
         add(textField);
         return textField;
     }
+    
 }
