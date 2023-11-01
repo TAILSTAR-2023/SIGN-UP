@@ -29,7 +29,6 @@ public class Enrolment extends InheritanceFrame {
         previewbtn.addActionListener(e -> {
         	dispose();
         	new Timetable_Preview().setVisible(true);
-        	System.out.println("미리보기 창 나옴");
         });
         
 	}
