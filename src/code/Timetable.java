@@ -33,5 +33,5 @@ public class Timetable extends InheritanceFrame {
         button.setBounds(x, y, 500, 65); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 65
         add(button); // 프레임 추가
     }
-	
+    
 }
