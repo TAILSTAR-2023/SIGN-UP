@@ -2,6 +2,7 @@ package code;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.PreparedStatement;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -30,14 +31,14 @@ public class Student_Management extends InheritanceFrame {
 		JButtonStyle(backbtn, 755, 20, "Student_Management_Screen_Back_Button.png");
     	JButtonStyle(completebtn, 920, 20, "Student_Management_Screen_Complete_Button.png");
     	
-    	TextFieldStyle(majortx, 180);
-		TextFieldStyle(courseNtx, 240);
-		TextFieldStyle(subjectNtx, 300);
-		TextFieldStyle(professorNtx, 360);
-		TextFieldStyle(studentNtx, 420);
-		TextFieldStyle(gradetx, 480);
-		TextFieldStyle(divisiontx, 540);
-		TextFieldStyle(classificationtx, 605);
+    	TextFieldStyle(majortx, 180);			// 학과전공
+		TextFieldStyle(courseNtx, 240);			// 학수번호
+		TextFieldStyle(subjectNtx, 300);		// 교과목명
+		TextFieldStyle(professorNtx, 360);		// 교수명
+		TextFieldStyle(studentNtx, 420);		// 학생명
+		TextFieldStyle(gradetx, 480);			// 학년
+		TextFieldStyle(divisiontx, 540);		// 분반
+		TextFieldStyle(classificationtx, 605);	// 이수구분
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Student_Management_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -49,6 +50,40 @@ public class Student_Management extends InheritanceFrame {
         });
         
         completebtn.addActionListener(e -> {
+        	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
+        	String major = majortx.getText();
+        	String course = courseNtx.getText();
+        	String subject = subjectNtx.getText();
+        	String professor = professorNtx.getText();
+        	String student = studentNtx.getText();
+        	String grade = gradetx.getText();
+        	String division = divisiontx.getText();
+        	String classification = classificationtx.getText();
+        	
+        	DB_connection s;
+        	
+        	try {
+        		s = new DB_connection();
+        		String sql = "INSERT INTO signup.student_management(major, subnum, subject, professor, sname, grade, class, course) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        	PreparedStatement ps = s.conn.prepareStatement(sql);
+	        	
+	        	ps.setString(1, major);
+	        	ps.setString(2, course);
+	        	ps.setString(3, subject);
+	        	ps.setString(4, professor);
+	        	ps.setString(5, student);
+	        	ps.setString(6, grade);
+	        	ps.setString(7, division);
+	        	ps.setString(8, classification);
+	        	
+				s = new DB_connection();        	
+				ps.executeUpdate();
+				
+			} catch (Exception e1) {
+				e1.printStackTrace();
+				System.out.println(e1.toString());
+			}
+        	
         	dispose();
         	new Professor().setVisible(true);
         });

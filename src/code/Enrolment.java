@@ -12,9 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Enrolment extends InheritanceFrame {
-	
-	// TODO : 텍스트라벨 생성, 신청 버튼 삽입
+public class Enrolment extends InheritanceFrame {	
 	
 	private JButton refreshbtn = new JButton();
 	private JButton previewbtn = new JButton();
@@ -85,7 +83,6 @@ public class Enrolment extends InheritanceFrame {
 				ps.executeUpdate();
 				
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 				System.out.println(e1.toString());
 			}
@@ -103,10 +100,10 @@ public class Enrolment extends InheritanceFrame {
         add(button); // 프레임 추가
     }
     
- // 텍스트필드 설정 메소드
+	// 텍스트필드 설정 메소드
     private JTextField TextFieldStyle(JTextField textField, int x, int y) {
-        textField.setBounds(x, y, 350, 55); // x, y, width, heigth
-        textField.setBackground(Color.decode("#FFFFFF"));
+        textField.setBounds(x, y, 350, 55); // x, y, width, height
+        textField.setBackground(Color.decode("#DBD0D2"));
         textField.setFont(new Font("SUITE", Font.PLAIN, 18));
         textField.setBorder(BorderFactory.createEmptyBorder());
         add(textField);

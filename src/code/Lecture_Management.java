@@ -2,6 +2,7 @@ package code;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.PreparedStatement;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -29,13 +30,13 @@ public class Lecture_Management extends InheritanceFrame {
     	JButtonStyle(backbtn, 755, 20, "Enrolment_Management_Screen_Back_Button.png");
     	JButtonStyle(completebtn, 920, 20, "Lecture_Management_Screen_Complete_Button.png");
     	
-    	TextFieldStyle(majortx, 180);
-		TextFieldStyle(courseNtx, 240);
-		TextFieldStyle(subjectNtx, 300);
-		TextFieldStyle(professorNtx, 360);
-		TextFieldStyle(gradetx, 420);
-		TextFieldStyle(divisiontx, 480);
-		TextFieldStyle(classificationtx, 545);
+    	TextFieldStyle(majortx, 180);			// 학과전공
+		TextFieldStyle(courseNtx, 240);			// 학수번호
+		TextFieldStyle(subjectNtx, 300);		// 교과목명
+		TextFieldStyle(professorNtx, 360);		// 교수명
+		TextFieldStyle(gradetx, 420);			// 학년
+		TextFieldStyle(divisiontx, 480);		// 분반
+		TextFieldStyle(classificationtx, 545);	// 이수구분
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Lecture_Management_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -47,6 +48,45 @@ public class Lecture_Management extends InheritanceFrame {
         });
         
         completebtn.addActionListener(e -> {
+        	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
+        	String major = majortx.getText();					// 학과전공
+        	String course = courseNtx.getText();				// 학수번호
+        	String subject = subjectNtx.getText();				// 교과목명
+        	String professor = professorNtx.getText();			// 교수명
+        	String grade = gradetx.getText();					// 학년
+        	String division = divisiontx.getText();				// 분반
+        	String classification = classificationtx.getText();	// 이수구분
+        	
+        	DB_connection s;
+        	
+        	try {
+        		s = new DB_connection();
+        		String sql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        	PreparedStatement ps = s.conn.prepareStatement(sql);
+	        	
+	        	ps.setString(1, major);				// 학과전공
+	        	ps.setString(2, course);			// 학수번호
+	        	ps.setString(3, division);
+	        	ps.setString(4, subject);
+	        	ps.setString(5, classification);
+	        	// TODO : 강의 관리 페이지와 시간표 페이지의 글이 일치하도록 변경
+//	        	ps.setString(7, )
+	        	// ps.setString(3, subject);			// 교과목명
+	        	ps.setString(4, professor);			// 교수명
+	        	ps.setString(5, grade);				// 학년
+	        	ps.setString(6, division);			// 분반
+	        	ps.setString(7, classification);	// 이수구분
+
+	        	// 전공, 번호, 반, 교과목명, 이수구분, 학점, 요일/시간, 강의실
+	        	
+				s = new DB_connection();        	
+				ps.executeUpdate();
+				
+			} catch (Exception e1) {
+				e1.printStackTrace();
+				System.out.println(e1.toString());
+			}
+        	
         	dispose();
         	new Professor().setVisible(true);
         });

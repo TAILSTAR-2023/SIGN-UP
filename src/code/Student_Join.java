@@ -2,6 +2,7 @@ package code;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.PreparedStatement;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -20,7 +21,7 @@ public class Student_Join extends InheritanceFrame {
 	private JTextField nametx = new JTextField();
 	private JTextField idtx = new JTextField();
 	private JPasswordField pwtx = new JPasswordField();
-	private JPasswordField pwdctx = new JPasswordField();
+	private JPasswordField pwcktx = new JPasswordField();
 	private JFormattedTextField teltx = new JFormattedTextField(); // 숫자입력위해
 	private JTextField emailtx = new JTextField();
 	
@@ -33,7 +34,7 @@ public class Student_Join extends InheritanceFrame {
 		TextFieldStyle(nametx, 170);
 		TextFieldStyle(idtx, 245);
 		TextFieldStyle(pwtx, 325);
-		TextFieldStyle(pwdctx, 410);
+		TextFieldStyle(pwcktx, 410);
 		TextFieldStyle(teltx, 500);
 		TextFieldStyle(emailtx, 580);
 			
@@ -42,6 +43,36 @@ public class Student_Join extends InheritanceFrame {
         add(lb);
 		
         completebtn.addActionListener(e -> {
+        	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
+        	String name = nametx.getText();
+        	String id = idtx.getText();
+        	String pw = pwtx.getText();
+        	String pwck = pwcktx.getText();
+        	String tel = teltx.getText();
+        	String email = emailtx.getText();
+        	
+        	DB_connection s;
+        	
+        	try {
+        		s = new DB_connection();
+        		String sql = "INSERT INTO signup.student_join(name, id, pw, pwck, tel, email) VALUES (?, ?, ?, ?, ?, ?)";
+	        	PreparedStatement ps = s.conn.prepareStatement(sql);
+	        	
+	        	ps.setString(1, name);
+	        	ps.setString(2, id);
+	        	ps.setString(3, pw);
+	        	ps.setString(4, pwck);
+	        	ps.setString(5, tel);
+	        	ps.setString(6, email);
+	        	
+				s = new DB_connection();        	
+				ps.executeUpdate();
+				
+			} catch (Exception e1) {
+				e1.printStackTrace();
+				System.out.println(e1.toString());
+			}
+        	
         	dispose();
         	new Student().setVisible(true);
         });
