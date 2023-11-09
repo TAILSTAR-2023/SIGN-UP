@@ -8,7 +8,6 @@ public class Student extends InheritanceFrame {
 	
 	private JButton joinbtn = new JButton();
 	private JButton loginbtn = new JButton();
-	private JButton filterbtn = new JButton();
 	private JButton enrolmentbtn = new JButton();
 	private JButton lecturecartbtn = new JButton();
 	
@@ -17,7 +16,6 @@ public class Student extends InheritanceFrame {
 		
 		JButtonStyle(joinbtn, 415, 400, 450, 65, "Student_Screen_Join_Button.png");
 		JButtonStyle(loginbtn, 415, 500, 450, 65, "Student_Screen_Login_Button.png");
-		JButtonStyle(filterbtn, 870, 35, 100, 100, "Student_Screen_Filter_Button.png");
 		JButtonStyle(enrolmentbtn, 1000, 35, 100, 100, "Student_Screen_Enrolment_Button.png");
 		JButtonStyle(lecturecartbtn, 1130, 35, 100, 100, "Student_Screen_Lecture_Cart_Button.png");
 		
@@ -33,11 +31,6 @@ public class Student extends InheritanceFrame {
         loginbtn.addActionListener(e -> {
         	dispose();
         	new Student_Login().setVisible(true);
-        });
-        
-        filterbtn.addActionListener(e -> {
-        	dispose();
-        	new Enrolment_Filter().setVisible(true);
         });
         
         enrolmentbtn.addActionListener(e -> {
