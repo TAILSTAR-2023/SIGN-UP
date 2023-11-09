@@ -2,6 +2,8 @@ package code;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.BorderFactory;
@@ -63,9 +65,30 @@ public class Enrolment extends InheritanceFrame {
         	String score = scoretx.getText();
         	String time = timetx.getText();
         	String lectureroom = lectureroomtx.getText();
+        	DB_connection s;
         	
-        	Statement stmt;
-        	stmt.execute()
+			try {
+				s = new DB_connection();
+	        	String sql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        	PreparedStatement ps = s.conn.prepareStatement(sql);
+	        	
+	        	ps.setString(1, major);
+	        	ps.setString(2, num);
+	        	ps.setString(3, classroom);
+	        	ps.setString(4, subject);
+	        	ps.setString(5, course);
+	        	ps.setString(6, score);
+	        	ps.setString(7, time);
+	        	ps.setString(8, lectureroom);
+	        	
+				s = new DB_connection();        	
+				ps.executeUpdate();
+				
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				System.out.println(e1.toString());
+			}
         });
         
 	}
