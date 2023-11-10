@@ -8,16 +8,13 @@ public class DB_connection {
 	static String password = "1234";
 	public Connection conn;
 	public Statement stmt;
-//	static String user = "root";
-//	static String pass = "1234";
-//	public DB_connection() {
-//		
-//		var con = DriverManager.getConnection()
+
 	// DB 초기 세팅
 	DB_connection() throws Exception {
 	      conn = DriverManager.getConnection(url, user, password);
 	      stmt = conn.createStatement();
 	}
+	
 	public static void main(String[] args) {
 		try {
 			new DB_connection();
