@@ -63,6 +63,7 @@ public class Enrolment extends InheritanceFrame {
         	String score = scoretx.getText();
         	String time = timetx.getText();
         	String lectureroom = lectureroomtx.getText();
+        	
         	DB_connection s;
         	
 			try {
