@@ -9,13 +9,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
 public class Student_Join extends InheritanceFrame {
 	
-	private JButton doublecheckbtn = new JButton();
+//	private JButton doublecheckbtn = new JButton();
 	private JButton completebtn = new JButton();
 	
 	private JTextField nametx = new JTextField();
@@ -29,7 +30,7 @@ public class Student_Join extends InheritanceFrame {
 		super("STUDENT JOIN", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setLayout(null);
 		
-		JButtonStyle(doublecheckbtn, 980, 405, "Student_Join_Screen_DoubleCheck_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
+//		JButtonStyle(doublecheckbtn, 980, 405, "Student_Join_Screen_DoubleCheck_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
 		JButtonStyle(completebtn, 1100, 35, "Student_Join_Screen_Complete_Button.png");
 		TextFieldStyle(nametx, 170);
 		TextFieldStyle(idtx, 245);
@@ -46,10 +47,15 @@ public class Student_Join extends InheritanceFrame {
         	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
         	String name = nametx.getText();
         	String id = idtx.getText();
-        	String pw = pwtx.getText();
-        	String pwck = pwcktx.getText();
+        	String pw = new String(pwtx.getPassword());
+        	String pwck = new String(pwcktx.getPassword());
         	String tel = teltx.getText();
         	String email = emailtx.getText();
+        	
+        	if (!pw.equals(pwck)) {
+                JOptionPane.showMessageDialog(this, "입력한 비밀번호와 일치하지 않습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                return; // 비밀번호 확인이 일치하지 않으면 회원가입 중단
+            }
         	
         	DB_connection s;
         	
@@ -67,6 +73,9 @@ public class Student_Join extends InheritanceFrame {
 	        	
 				s = new DB_connection();        	
 				ps.executeUpdate();
+				
+				// 회원가입이 성공했을 때 메시지 창 표시
+		        JOptionPane.showMessageDialog(this, "회원가입 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
 				
 			} catch (Exception e1) {
 				e1.printStackTrace();
