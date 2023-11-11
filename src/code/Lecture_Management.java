@@ -68,9 +68,7 @@ public class Lecture_Management extends InheritanceFrame {
                 // 레코드 찾음, 업데이트 진행
                 try {
                     s = new DB_connection();
-                    String updateSql = "UPDATE signup.timetable " +
-                            "SET major = ?, num = ?, class = ?, subject = ?, course = ?, score = ?, time = ?, lectureroom = ? " +
-                            "WHERE id = ?";
+                    String updateSql = "UPDATE signup.timetable SET major = ?, num = ?, class = ?, subject = ?, course = ?, score = ?, time = ?, lectureroom = ? WHERE id = ?";
 
                     PreparedStatement updatePs = s.conn.prepareStatement(updateSql);
 
