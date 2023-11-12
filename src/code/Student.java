@@ -3,8 +3,11 @@ package code;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Student extends InheritanceFrame {
+	
+	private boolean loginIn = false; // 로그인 여부를 저장하는 변수
 	
 	private JButton joinbtn = new JButton();
 	private JButton loginbtn = new JButton();
@@ -31,16 +34,29 @@ public class Student extends InheritanceFrame {
         loginbtn.addActionListener(e -> {
         	dispose();
         	new Student_Login().setVisible(true);
+        	
+        	loginIn = true; // 로그인이 완료되면 loginIn 변수를 true로 설정
         });
         
         enrolmentbtn.addActionListener(e -> {
-        	dispose();
-        	new Enrolment().setVisible(true);
+        	if (loginIn) {
+        		// 로그인된 상태이므로 수강신청 페이지 실행
+        		dispose();
+        		new Enrolment().setVisible(true);
+        	} else {
+        		// 로그인되지 않은 상태이므로 메시지를 표시
+                JOptionPane.showMessageDialog(this, "로그인을 먼저 해주세요.", "안내", JOptionPane.WARNING_MESSAGE);
+        	}
         });
         
         lecturecartbtn.addActionListener(e -> {
-        	dispose();
-        	new Enrolment_Cart().setVisible(true);
+        	if (loginIn) {
+        		dispose();
+        		new Enrolment_Cart().setVisible(true);
+        	} else {
+        		// 로그인되지 않은 상태이므로 메시지를 표시
+                JOptionPane.showMessageDialog(this, "로그인을 먼저 해주세요.", "안내", JOptionPane.WARNING_MESSAGE);
+        	}
         });
         
 	}
