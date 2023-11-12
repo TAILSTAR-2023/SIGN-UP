@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Enrolment extends InheritanceFrame {	
 	
 	private JButton refreshbtn = new JButton();
-	private JButton previewbtn = new JButton();
+	private JButton listbtn = new JButton();
 	private JButton submitbtn = new JButton();
 	
 	private JTextField majortx = new JTextField();
@@ -31,7 +31,7 @@ public class Enrolment extends InheritanceFrame {
 		super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
 		JButtonStyle(refreshbtn, 755, 20, "Enrolment_Screen_Refresh_Button.png");
-		JButtonStyle(previewbtn, 920, 20, "Enrolment_Screen_Preview_Button.png");
+		JButtonStyle(listbtn, 920, 20, "Enrolment_Screen_List_Button.png");
 		JButtonStyle(submitbtn, 400, 600, "Enrolment_Application_Button.png");
 		
 		TextFieldStyle(majortx, 250, 130);
@@ -47,10 +47,14 @@ public class Enrolment extends InheritanceFrame {
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-        
-        previewbtn.addActionListener(e -> {
+        listbtn.addActionListener(e -> {
         	dispose();
-        	new Timetable_Preview().setVisible(true);
+        	try {
+				new Timetable_List().setVisible(true);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         });
         
         submitbtn.addActionListener(e -> {
