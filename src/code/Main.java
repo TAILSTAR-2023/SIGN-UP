@@ -10,7 +10,7 @@ public class Main {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	try {
-					Timetable_List startMain = new Timetable_List();
+					SIGNUP startMain = new SIGNUP();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
