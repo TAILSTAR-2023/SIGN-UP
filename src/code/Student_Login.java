@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class Student_Login extends InheritanceFrame {
 	
@@ -42,7 +43,7 @@ public class Student_Login extends InheritanceFrame {
                 dbConnection = new DB_connection();
 
                 // 아이디와 비밀번호를 검증하기 위한 SQL 쿼리
-                String sql = "SELECT id, pw FROM signup.professor_join WHERE id = ?";
+                String sql = "SELECT id, pw FROM signup.student_join WHERE id = ?";
 
                 PreparedStatement ps = dbConnection.conn.prepareStatement(sql);
                 ps.setString(1, id);
@@ -55,6 +56,13 @@ public class Student_Login extends InheritanceFrame {
                     // DB에 저장된 비밀번호와 입력한 비밀번호 비교
                     if (pw.equals(storedPw)) {
                         JOptionPane.showMessageDialog(this, "로그인 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        // Student 클래스의 loginIn 변수를 true로 설정
+                        Student studentFrame = Student.getInstance();
+                        if (studentFrame != null) {
+                            studentFrame.setLoginStatus(true);
+                        }
+                        
                         // 로그인 성공한 경우, 다음 작업을 수행하거나 메인 화면으로 이동
                         dispose();
                         new Student().setVisible(true);
