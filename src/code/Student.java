@@ -12,15 +12,15 @@ public class Student extends InheritanceFrame {
 	private JButton joinbtn = new JButton();
 	private JButton loginbtn = new JButton();
 	private JButton enrolmentbtn = new JButton();
-	private JButton lecturecartbtn = new JButton();
+	private JButton listbtn = new JButton();
 	
 	public Student() {
 		super("STUDENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
 		JButtonStyle(joinbtn, 415, 400, 450, 65, "Student_Screen_Join_Button.png");
 		JButtonStyle(loginbtn, 415, 500, 450, 65, "Student_Screen_Login_Button.png");
-		JButtonStyle(enrolmentbtn, 1000, 35, 100, 100, "Student_Screen_Enrolment_Button.png");
-		JButtonStyle(lecturecartbtn, 1130, 35, 100, 100, "Student_Screen_Lecture_Cart_Button.png");
+		JButtonStyle(enrolmentbtn, 1000, 35, 100, 100, "Student_Screen_Timetable_Button.png");
+		JButtonStyle(listbtn, 1130, 35, 100, 100, "Student_Screen_Timetable_List_Button.png");
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Student_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -54,15 +54,20 @@ public class Student extends InheritanceFrame {
         });
 
 
-        lecturecartbtn.addActionListener(e -> {
+        listbtn.addActionListener(e -> {
             if (loginIn) {
                 dispose();
-                new Enrolment_Cart().setVisible(true);
-                System.out.println("카트 창 열림");
+                try {
+					new Timetable_List().setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                System.out.println("시간표 목록 창 열림");
             } else {
                 // 로그인되지 않은 상태이므로 메시지를 표시
                 JOptionPane.showMessageDialog(this, "로그인을 먼저 해주세요.", "안내", JOptionPane.WARNING_MESSAGE);
-                System.out.println("카트 창 안열림");
+                System.out.println("시간표 목록 창 안열림");
             }
         });
         
