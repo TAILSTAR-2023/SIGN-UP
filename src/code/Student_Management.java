@@ -16,13 +16,9 @@ public class Student_Management extends InheritanceFrame {
 	private JButton completebtn = new JButton();
 	
 	private JTextField majortx = new JTextField();
-//	private JTextField courseNtx = new JTextField();
-//	private JTextField subjectNtx = new JTextField();
-//	private JTextField professorNtx = new JTextField();
 	private JTextField studentNtx = new JTextField();
 	private JTextField gradetx = new JTextField();
 	private JTextField sIDtx = new JTextField();
-//	private JTextField classificationtx = new JTextField();
 	
 	public Student_Management() {
 		super("STUDENT MANAGEMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -30,14 +26,10 @@ public class Student_Management extends InheritanceFrame {
     	
     	JButtonStyle(completebtn, 920, 20, "Student_Management_Screen_Complete_Button.png");
     	
-    	TextFieldStyle(majortx, 230);			
-//		TextFieldStyle(courseNtx, 240);			
-//		TextFieldStyle(subjectNtx, 300);		
-//		TextFieldStyle(professorNtx, 360);		
+    	TextFieldStyle(majortx, 230);				
 		TextFieldStyle(studentNtx, 300);		
 		TextFieldStyle(gradetx, 370);			
 		TextFieldStyle(sIDtx, 440);		
-//		TextFieldStyle(classificationtx, 605);	
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Student_Management_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -46,7 +38,6 @@ public class Student_Management extends InheritanceFrame {
         completebtn.addActionListener(e -> {
         	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
         	String major = majortx.getText();
-//        	String course = courseNtx.getText();
         	String student = studentNtx.getText();
         	String grade = gradetx.getText();
         	String sID = sIDtx.getText();
