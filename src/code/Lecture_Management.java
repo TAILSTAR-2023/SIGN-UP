@@ -16,7 +16,7 @@ public class Lecture_Management extends InheritanceFrame {
 
     private JButton correctionbtn = new JButton();
     private JButton registrationbtn = new JButton();
-    
+
     private JTextField majortx = new JTextField();
     private JTextField numtx = new JTextField();
     private JTextField classtx = new JTextField();
@@ -51,6 +51,7 @@ public class Lecture_Management extends InheritanceFrame {
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
 
+        // correctionbtn 액션 리스너
         correctionbtn.addActionListener(e -> {
             String major = majortx.getText();
             String num = numtx.getText();
@@ -104,6 +105,7 @@ public class Lecture_Management extends InheritanceFrame {
             new Professor().setVisible(true);
         });
 
+        // registrationbtn 액션 리스너
         registrationbtn.addActionListener(e -> {
             String major = majortx.getText();
             String num = numtx.getText();
@@ -118,26 +120,41 @@ public class Lecture_Management extends InheritanceFrame {
                 // 데이터베이스에 연결
                 DB_connection s = new DB_connection(url, user, password);
 
-                String sql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement ps = s.conn.prepareStatement(sql)) {
-                    ps.setString(1, major);
-                    ps.setString(2, num);
-                    ps.setString(3, classroom);
-                    ps.setString(4, subject);
-                    ps.setString(5, course);
-                    ps.setString(6, score);
-                    ps.setString(7, time);
-                    ps.setString(8, lectureroom);
+                // 새 레코드 추가
+                String insertSql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement insertPs = s.conn.prepareStatement(insertSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+                    insertPs.setString(1, major);
+                    insertPs.setString(2, num);
+                    insertPs.setString(3, classroom);
+                    insertPs.setString(4, subject);
+                    insertPs.setString(5, course);
+                    insertPs.setString(6, score);
+                    insertPs.setString(7, time);
+                    insertPs.setString(8, lectureroom);
 
-                    ps.executeUpdate();
+                    int affectedRows = insertPs.executeUpdate();
+
+                    if (affectedRows > 0) {
+                        // 삽입된 레코드의 ID 가져오기
+                        try (ResultSet generatedKeys = insertPs.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int newRecordId = generatedKeys.getInt(1);
+                                System.out.println("New Record ID: " + newRecordId);
+                            }
+                        }
+                        JOptionPane.showMessageDialog(this, "저장 완료", "알림", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "레코드 삽입 실패", "오류", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-
-                // 저장 완료 메시지 출력
-                JOptionPane.showMessageDialog(this, "저장 완료", "알림", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+                JOptionPane.showMessageDialog(this, "오류 발생: " + e1.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
             } catch (Exception e1) {
                 e1.printStackTrace();
                 System.out.println(e1.toString());
             }
+            
             dispose();
             new Professor().setVisible(true);
         });
@@ -163,10 +180,10 @@ public class Lecture_Management extends InheritanceFrame {
         return textField;
     }
 
- // findRecordId 메서드에 디버깅 문 추가
+    // 실제 데이터베이스와 상호작용하여 레코드 ID를 찾는 메소드
     private int findRecordId(DB_connection s, String major, String num, String classroom, String subject, String course) {
         try {
-            String query = "SELECT id FROM timetable " +
+            String query = "SELECT id FROM signup.timetable " +
                     "WHERE major = ? AND num = ? AND class = ? AND subject = ? AND course = ?";
 
             PreparedStatement queryPs = s.conn.prepareStatement(query);
@@ -201,5 +218,4 @@ public class Lecture_Management extends InheritanceFrame {
             return -1; // 기타 예외 발생 시 -1 반환
         }
     }
-
 }
