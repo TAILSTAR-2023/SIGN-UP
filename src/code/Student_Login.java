@@ -56,13 +56,6 @@ public class Student_Login extends InheritanceFrame {
                     // DB에 저장된 비밀번호와 입력한 비밀번호 비교
                     if (pw.equals(storedPw)) {
                         JOptionPane.showMessageDialog(this, "로그인 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
-                        
-                        // Student 클래스의 loginIn 변수를 true로 설정
-                        Student studentFrame = Student.getInstance();
-                        if (studentFrame != null) {
-                            studentFrame.setLoginStatus(true);
-                        }
-                        
                         // 로그인 성공한 경우, 다음 작업을 수행하거나 메인 화면으로 이동
                         dispose();
                         new Student().setVisible(true);

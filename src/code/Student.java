@@ -7,21 +7,20 @@ import javax.swing.JOptionPane;
 
 public class Student extends InheritanceFrame {
 	
-    private static Student instance; // Student 클래스의 인스턴스를 저장하기 위한 변수
-	private boolean loginIn = false; // 로그인 여부를 저장하는 변수
+	public static boolean loginIn = false; // 로그인 여부를 저장하는 변수
 	
 	private JButton joinbtn = new JButton();
 	private JButton loginbtn = new JButton();
 	private JButton enrolmentbtn = new JButton();
-	private JButton lecturecartbtn = new JButton();
+	private JButton listbtn = new JButton();
 	
 	public Student() {
 		super("STUDENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		
 		JButtonStyle(joinbtn, 415, 400, 450, 65, "Student_Screen_Join_Button.png");
 		JButtonStyle(loginbtn, 415, 500, 450, 65, "Student_Screen_Login_Button.png");
-		JButtonStyle(enrolmentbtn, 1000, 35, 100, 100, "Student_Screen_Enrolment_Button.png");
-		JButtonStyle(lecturecartbtn, 1130, 35, 100, 100, "Student_Screen_Lecture_Cart_Button.png");
+		JButtonStyle(enrolmentbtn, 1000, 35, 100, 100, "Student_Screen_Timetable_Button.png");
+		JButtonStyle(listbtn, 1130, 35, 100, 100, "Student_Screen_Timetable_List_Button.png");
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Student_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -33,31 +32,42 @@ public class Student extends InheritanceFrame {
         });
         
         loginbtn.addActionListener(e -> {
-            loginIn = true; // 로그인이 완료되면 loginIn 변수를 true로 설정
+            Student.loginIn = true; // 로그인이 완료되면 loginIn 변수를 true로 설정
             System.out.println("로그인 버튼 실행");
 
             dispose();
             new Student_Login().setVisible(true);
         });
+
         
         enrolmentbtn.addActionListener(e -> {
-            if (loginIn) {
+            if (Student.loginIn) {
                 // 로그인된 상태이므로 수강신청 페이지 실행
                 dispose();
                 new Enrolment().setVisible(true);
+                System.out.println("수강신청 창 열림");
             } else {
                 // 로그인되지 않은 상태이므로 메시지를 표시
                 JOptionPane.showMessageDialog(this, "로그인을 먼저 해주세요.", "안내", JOptionPane.WARNING_MESSAGE);
+                System.out.println("수강신청 창 안열림");
             }
         });
 
-        lecturecartbtn.addActionListener(e -> {
+
+        listbtn.addActionListener(e -> {
             if (loginIn) {
                 dispose();
-                new Enrolment_Cart().setVisible(true);
+                try {
+					new Timetable_List().setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                System.out.println("시간표 목록 창 열림");
             } else {
                 // 로그인되지 않은 상태이므로 메시지를 표시
                 JOptionPane.showMessageDialog(this, "로그인을 먼저 해주세요.", "안내", JOptionPane.WARNING_MESSAGE);
+                System.out.println("시간표 목록 창 안열림");
             }
         });
         
@@ -71,16 +81,6 @@ public class Student extends InheritanceFrame {
         button.setFocusPainted(false); // 포커스 받을 때 테두리 표시되지 않도록 설정
         button.setBounds(x, y, w, h); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 w, 세로 h
         add(button); // 프레임 추가
-    }
-    
- // Student 클래스의 인스턴스를 가져오는 메소드
-    public static Student getInstance() {
-        return instance;
-    }
-
-    // 로그인 상태를 설정하는 메소드
-    public void setLoginStatus(boolean status) {
-        loginIn = status;
     }
 	
 }
