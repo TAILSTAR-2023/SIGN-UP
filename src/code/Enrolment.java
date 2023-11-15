@@ -48,13 +48,14 @@ public class Enrolment extends InheritanceFrame {
         add(lb);
         
         listbtn.addActionListener(e -> {
-        	dispose();
-        	try {
-				new Timetable_List().setVisible(true);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+        	System.out.println("List button clicked"); // 디버깅용 출력
+            dispose();
+            new Timetable_List().setVisible(true);
+//            try {
+//                new Timetable_List().setVisible(true);
+//            } catch (Exception e1) {
+//                e1.printStackTrace();
+//            }
         });
         
         submitbtn.addActionListener(e -> {
