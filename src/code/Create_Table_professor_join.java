@@ -30,7 +30,7 @@ public class Create_Table_professor_join extends Create_Schema {
 	
 	public static void main(String args[]) {
 		try {
-			new Create_Table_timetable();
+			new Create_Table_timetable_list();
 			System.out.println("성공");
 		} catch (Exception e) {
 			e.printStackTrace();
