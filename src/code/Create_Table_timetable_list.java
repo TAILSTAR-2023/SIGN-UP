@@ -1,16 +1,16 @@
 package code;
 
-public class Create_Table_timetable extends Create_Schema {
+public class Create_Table_timetable_list extends Create_Schema {
 
-	Create_Table_timetable() throws Exception {
-		String table_name = "timetable";
+	Create_Table_timetable_list() throws Exception {
+		String table_name = "timetable_list";
 		String check_table = "CHECK TABLE " + schema_name + "." + table_name;
 		boolean table_exists = false;
 
 		new DB_connection();
 		new Create_Schema();
 
-		// timetable 테이블 존재 여부 확인
+		// timetable_list 테이블 존재 여부 확인
 		table_exists = false;
 		if (stmt.execute(check_table))
 			if (stmt.getResultSet().next())
@@ -26,17 +26,15 @@ public class Create_Table_timetable extends Create_Schema {
 					+ "`course` VARCHAR(20) NOT NULL, \r\n"
 					+ "`score` DOUBLE NOT NULL, \r\n"
 					+ "`time` VARCHAR(20) NOT NULL,\r\n"
-					+ "`lectureroom` VARCHAR(25) NOT NULL, \r\n"
-					+ "`professor` VARCHAR(15) NOT NULL, \r\n"
-					+ "`person` INT NOT NULL);");
+					+ "`lectureroom` VARCHAR(25) NOT NULL");
 
-			System.out.println("timetable 테이블 생성");
+			System.out.println("timetable_list 테이블 생성");
 		}
 	}
 	
 	public static void main(String args[]) {
 		try {
-			new Create_Table_timetable();
+			new Create_Table_timetable_list();
 			System.out.println("성공");
 		} catch (Exception e) {
 			e.printStackTrace();

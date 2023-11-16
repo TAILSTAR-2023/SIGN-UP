@@ -59,7 +59,6 @@ public class Enrolment extends InheritanceFrame {
             lectureroomtx.setText("");
         });
 
-        
         listbtn.addActionListener(e -> {
             System.out.println("List button clicked");
             dispose();
@@ -81,7 +80,7 @@ public class Enrolment extends InheritanceFrame {
         	
 			try {
 				s = new DB_connection();
-	        	String sql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        	String sql = "INSERT INTO signup.timetable_list(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	        	PreparedStatement ps = s.conn.prepareStatement(sql);
 	        	
 	        	ps.setString(1, major);

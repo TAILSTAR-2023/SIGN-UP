@@ -67,7 +67,7 @@ public class Timetable_List extends InheritanceFrame {
         // 데이터베이스에서 테이블 데이터로 채우기
         try {
             DB_connection s = new DB_connection();
-            String query = "SELECT major, num, class, subject, course, score, time, lectureroom FROM signup.timetable";
+            String query = "SELECT major, num, class, subject, course, score, time, lectureroom FROM signup.timetable_list";
             PreparedStatement preparedStatement = s.conn.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
