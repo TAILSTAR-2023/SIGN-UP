@@ -3,6 +3,7 @@ package code;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,16 +16,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class Timetable_List extends InheritanceFrame {
+public class Timetable_Catalog extends InheritanceFrame {
 
-    private JButton listbtn = new JButton();
+    private JButton backbtn = new JButton();
     private JTable timetableTable;
 
-    public Timetable_List() {
+    public Timetable_Catalog() {
         super("TIMETABLE LIST", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
         // 버튼과 테이블 초기화
-        JButtonStyle(listbtn, 920, 20, "Timetable_List_Screen_Back_Button.png");
+        JButtonStyle(backbtn, 920, 20, "Timetable_List_Screen_Back_Button.png");
         initializeTable();
 
         // 레이아웃 구성
@@ -34,7 +35,8 @@ public class Timetable_List extends InheritanceFrame {
         add(scrollPane);
 
         // 이벤트 리스너 등록
-        listbtn.addActionListener(e -> {
+        backbtn.addActionListener(e -> {
+            System.out.println("List Button Clicked!"); // 디버깅 출력문 추가
             dispose();
             new Enrolment().setVisible(true);
         });
@@ -94,7 +96,6 @@ public class Timetable_List extends InheritanceFrame {
             e.printStackTrace();
             System.out.println("Exception: " + e.toString());
         }
-
     }
 
     // 버튼 설정 메소드

@@ -16,19 +16,18 @@ public class Create_Table_student_management extends Create_Schema {
 			if (stmt.getResultSet().next())
 				table_exists = true;
 		if(!table_exists) { // 테이블이 존재하지 않으면 테이블 생성
-			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
-					+ "`major` VARCHAR(30) NOT NULL, \r\n"
-					+ "`name` VARCHAR(10) NOT NULL, \r\n"
-					+ "`grade` INT NOT NULL PRIMARY KEY, \r\n"
-					+ "`sID` VARCHAR(10) NOT NULL");
+	         stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
+	               + "`major` VARCHAR(30) NOT NULL, \r\n"
+	               + "`name` VARCHAR(10) NOT NULL, \r\n"
+	               + "`grade` INT NOT NULL PRIMARY KEY, \r\n"
+	               + "`sID` VARCHAR(10) NOT NULL)");
 
-			System.out.println("student_management 테이블 생성");
-		}
+	      }
 	}
 	
 	public static void main(String args[]) {
 		try {
-			new Create_Table_timetable_list();
+			new Create_Table_student_management();
 			System.out.println("성공");
 		} catch (Exception e) {
 			e.printStackTrace();
