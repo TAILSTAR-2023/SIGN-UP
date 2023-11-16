@@ -3,7 +3,7 @@ package code;
 import java.sql.*;
 
 public class DB_connection {
-    static String url = "jdbc:mysql://127.0.0.1/?serverTimezone=UTC&allowLoadLocalInfile=true";
+    static String url = "jdbc:mysql://127.0.0.1/signup?serverTimezone=UTC&allowLoadLocalInfile=true";
     static String user = "root";
     static String password = "1234";
     public Connection conn;
@@ -19,7 +19,7 @@ public class DB_connection {
 
     // DB 초기 세팅
     DB_connection() throws SQLException {
-        String url = "jdbc:mysql://127.0.0.1/signup?serverTimezone=UTC&allowLoadLocalInfile=true";
+//        String url = "jdbc:mysql://127.0.0.1/signup?serverTimezone=UTC&allowLoadLocalInfile=true";
         conn = DriverManager.getConnection(url, user, password);
         stmt = conn.createStatement();
     }

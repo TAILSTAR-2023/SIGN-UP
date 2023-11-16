@@ -17,19 +17,19 @@ public class Create_Table_timetable_list extends Create_Schema {
 				table_exists = true;
 
 		if(!table_exists) { // 테이블이 존재하지 않으면 테이블 생성
-			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
-					+ "`id` INT PRIMARY KEY AUTO_INCREMENT, \r\n"
-					+ "`major` VARCHAR(30) NOT NULL, \r\n"
-					+ "`num` INT NOT NULL PRIMARY KEY, \r\n"
-					+ "`class` INT NOT NULL, \r\n"
-					+ "`subject` VARCHAR(100) NOT NULL, \r\n"
-					+ "`course` VARCHAR(20) NOT NULL, \r\n"
-					+ "`score` DOUBLE NOT NULL, \r\n"
-					+ "`time` VARCHAR(20) NOT NULL,\r\n"
-					+ "`lectureroom` VARCHAR(25) NOT NULL");
+	         stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
+	               + "`id` INT AUTO_INCREMENT PRIMARY KEY, \r\n"
+	               + "`major` VARCHAR(30) NOT NULL, \r\n"
+	               + "`num` INT NOT NULL, \r\n"
+	               + "`class` INT NOT NULL, \r\n"
+	               + "`subject` VARCHAR(100) NOT NULL, \r\n"
+	               + "`course` VARCHAR(20) NOT NULL, \r\n"
+	               + "`score` DOUBLE NOT NULL, \r\n"
+	               + "`time` VARCHAR(20) NOT NULL,\r\n"
+	               + "`lectureroom` VARCHAR(25) NOT NULL)");
 
-			System.out.println("timetable_list 테이블 생성");
-		}
+	         System.out.println("timetable_list 테이블 생성");
+	      }
 	}
 	
 	public static void main(String args[]) {

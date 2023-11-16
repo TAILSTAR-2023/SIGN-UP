@@ -16,21 +16,21 @@ public class Create_Table_student_join extends Create_Schema {
 			if (stmt.getResultSet().next())
 				table_exists = true;
 		if(!table_exists) { // 테이블이 존재하지 않으면 테이블 생성
-			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
-					+ "`name` VARCHAR(7) NOT NULL, \r\n"
-					+ "`id` VARCHAR(20) NOT NULL, \r\n"
-					+ "`pw` VARCHAR(20) NOT NULL \r\n"
-					+ "`pwck` VARCHAR(20) NOT NULL \r\n"
-					+ "`tel` VARCHAR(15) NOT NULL, \r\n"
-					+ "`email` VARCHAR(30) NOT NULL;");
+	         stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
+	               + "`name` VARCHAR(7) NOT NULL, \r\n"
+	               + "`id` VARCHAR(20) NOT NULL, \r\n"
+	               + "`pw` VARCHAR(20) NOT NULL, \r\n"
+	               + "`pwck` VARCHAR(20) NOT NULL, \r\n"
+	               + "`tel` VARCHAR(15) NOT NULL, \r\n"
+	               + "`email` VARCHAR(30) NOT NULL)");
 
-			System.out.println("student_join 테이블 생성");
-		}
+	         System.out.println("student_join 테이블 생성");
+	      }
 	}
 	
 	public static void main(String args[]) {
 		try {
-			new Create_Table_timetable_list();
+			new Create_Table_student_join();
 			System.out.println("성공");
 		} catch (Exception e) {
 			e.printStackTrace();

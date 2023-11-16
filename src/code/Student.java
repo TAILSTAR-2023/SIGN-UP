@@ -58,7 +58,7 @@ public class Student extends InheritanceFrame {
             if (loginIn) {
                 dispose();
                 try {
-					new Timetable_List().setVisible(true);
+					new Timetable_Catalog().setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
