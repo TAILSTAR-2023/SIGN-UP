@@ -34,9 +34,9 @@ public class Enrolment extends InheritanceFrame {
     public Enrolment() {
         super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
-        JButtonStyle(refreshbtn, 755, 20, "Enrolment_Screen_Refresh_Button.png");
-        JButtonStyle(catalogbtn, 920, 20, "Enrolment_Screen_List_Button.png");
-        JButtonStyle(submitbtn, 400, 600, "Enrolment_Application_Button.png");
+        JButtonStyle(refreshbtn, 870, 20, 150, 65, "Enrolment_Screen_Refresh_Button.png");
+        JButtonStyle(catalogbtn, 1050, 20, 150, 65, "Enrolment_Screen_List_Button.png");
+        JButtonStyle(submitbtn, 350, 600, 600, 65, "Enrolment_Application_Button.png");
 
         TextFieldStyle(majortx, 250, 130);
         TextFieldStyle(numtx, 250, 250);
@@ -140,12 +140,12 @@ public class Enrolment extends InheritanceFrame {
     }
     
     // 버튼 설정 메소드
-    private void JButtonStyle(JButton button, int x, int y, String imageName) {
+    private void JButtonStyle(JButton button, int x, int y, int w, int h, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName))); // 버튼 이미지 아이콘 설정
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
         button.setFocusPainted(false); // 포커스 받을 때 테두리 표시되지 않도록 설정
-        button.setBounds(x, y, 500, 65); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 500, 세로 65
+        button.setBounds(x, y, w, h); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 150, 세로 65
         add(button); // 프레임 추가
     }
     
@@ -184,4 +184,9 @@ public class Enrolment extends InheritanceFrame {
             return false; // 오류 발생 시 false 반환
         }
     }
+    
+//    public static void main(String[] args) {
+//    	new Enrolment();
+//    }
+    
 }
