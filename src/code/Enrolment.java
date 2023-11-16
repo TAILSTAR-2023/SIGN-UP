@@ -47,17 +47,25 @@ public class Enrolment extends InheritanceFrame {
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
+        refreshbtn.addActionListener(e -> {
+            // 새로고침 버튼을 눌렀을 때 수행할 동작
+            majortx.setText("");
+            numtx.setText("");
+            classtx.setText("");
+            subjecttx.setText("");
+            coursetx.setText("");
+            scoretx.setText("");
+            timetx.setText("");
+            lectureroomtx.setText("");
+        });
+
+        
         listbtn.addActionListener(e -> {
-        	System.out.println("List button clicked"); // 디버깅용 출력
+            System.out.println("List button clicked");
             dispose();
             new Timetable_List().setVisible(true);
-//            try {
-//                new Timetable_List().setVisible(true);
-//            } catch (Exception e1) {
-//                e1.printStackTrace();
-//            }
         });
-        
+
         submitbtn.addActionListener(e -> {
         	// 텍스트필드에 있는 값을 문자열로 변환하여 변수에 저장
         	String major = majortx.getText();

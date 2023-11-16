@@ -89,10 +89,10 @@ public class Timetable_List extends InheritanceFrame {
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e.toString());
+            System.out.println("SQL Exception: " + e.toString());
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.toString());
+            System.out.println("Exception: " + e.toString());
         }
 
     }
