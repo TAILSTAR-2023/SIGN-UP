@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 public class Enrolment extends InheritanceFrame {
 
+	private JButton backbtn = new JButton();
     private JButton refreshbtn = new JButton();
     private JButton catalogbtn = new JButton();
     private JButton submitbtn = new JButton();
@@ -34,6 +35,7 @@ public class Enrolment extends InheritanceFrame {
     public Enrolment() {
         super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
+        JButtonStyle(backbtn, 70, 100, 150, 65, "Enrolment_Screen_Back_Button.png");
         JButtonStyle(refreshbtn, 870, 20, 150, 65, "Enrolment_Screen_Refresh_Button.png");
         JButtonStyle(catalogbtn, 1050, 20, 150, 65, "Enrolment_Screen_List_Button.png");
         JButtonStyle(submitbtn, 350, 600, 600, 65, "Enrolment_Application_Button.png");
@@ -53,6 +55,11 @@ public class Enrolment extends InheritanceFrame {
         
         catalogbtn.setEnabled(true);
 
+        backbtn.addActionListener(e -> {
+        	dispose();
+        	new Student().setVisible(true);
+        });
+        
         // refreshbtn 액션 리스너
         refreshbtn.addActionListener(e -> {
             // 텍스트 필드 초기화
