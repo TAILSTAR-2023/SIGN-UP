@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 public class Professor_Join extends InheritanceFrame {
 	
 //	private JButton doublecheckbtn = new JButton();
+	private JButton backbtn = new JButton();
 	private JButton completebtn = new JButton();
 	
 	private JTextField nametx = new JTextField();
@@ -30,7 +31,9 @@ public class Professor_Join extends InheritanceFrame {
 		setLayout(null);
 		
 //		JButtonStyle(doublecheckbtn, 980, 405, "Professor_Join_Screen_DoubleCheck_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
-		JButtonStyle(completebtn, 1100, 35, "Professor_Join_Screen_Complete_Button.png");
+		JButtonStyle(backbtn, 10, 35, 150, 65, "Professor_Join_Screen_Back_Button.png");
+		JButtonStyle(completebtn, 950, 35, 450, 65, "Professor_Join_Screen_Complete_Button.png");
+		
 		TextFieldStyle(nametx, 170);
 		TextFieldStyle(idtx, 245);
 		TextFieldStyle(pwtx, 325);
@@ -41,6 +44,11 @@ public class Professor_Join extends InheritanceFrame {
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Join_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
+        
+        backbtn.addActionListener(e -> {
+        	dispose();
+        	new Professor().setVisible(true);
+        });
         
         completebtn.addActionListener(e -> {
         	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
@@ -86,12 +94,12 @@ public class Professor_Join extends InheritanceFrame {
 	}
 	
 	// 버튼 설정 메소드
-    private void JButtonStyle(JButton button, int x, int y, String imageName) {
+    private void JButtonStyle(JButton button, int x, int y, int w, int h, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName))); // 버튼 이미지 아이콘 설정
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
         button.setFocusPainted(false); // 포커스 받을 때 테두리 표시되지 않도록 설정
-        button.setBounds(x, y, 140, 65); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 140, 세로 65
+        button.setBounds(x, y, w, h); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 w, 세로 h
         add(button); // 프레임 추가
     }
     
