@@ -38,7 +38,7 @@ public class DB_connection {
     // 기존 생성자와 연결 코드 등을 포함한 나머지 부분은 유지하고, 아래의 메소드를 추가합니다.
     public void closeConnection() {
         try {
-            if (conn != null && !conn.isClosed()) {
+            if (conn != null) {
                 conn.close();
             }
         } catch (SQLException e) {
