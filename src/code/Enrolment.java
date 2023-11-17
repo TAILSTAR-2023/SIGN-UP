@@ -35,7 +35,7 @@ public class Enrolment extends InheritanceFrame {
     public Enrolment() {
         super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
-        JButtonStyle(backbtn, 70, 100, 150, 65, "Enrolment_Screen_Back_Button.png");
+        JButtonStyle(backbtn, 40, 20, 150, 65, "Enrolment_Screen_Back_Button.png");
         JButtonStyle(refreshbtn, 870, 20, 150, 65, "Enrolment_Screen_Refresh_Button.png");
         JButtonStyle(catalogbtn, 1050, 20, 150, 65, "Enrolment_Screen_List_Button.png");
         JButtonStyle(submitbtn, 350, 600, 600, 65, "Enrolment_Application_Button.png");
