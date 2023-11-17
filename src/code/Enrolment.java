@@ -35,6 +35,9 @@ public class Enrolment extends InheritanceFrame {
     private JTextField scoretx = new JTextField();
     private JTextField timetx = new JTextField();
     private JTextField lectureroomtx = new JTextField();
+    
+    private JTable timetableTable;
+    private DefaultTableModel tableModel;
 
     // Enrolment 클래스의 생성자
     public Enrolment() {
@@ -82,7 +85,7 @@ public class Enrolment extends InheritanceFrame {
             lectureroomtx.setText("");
         });
 
-        // 카탈로그 버튼 액션 리스너
+     // 카탈로그 버튼 액션 리스너
         catalogbtn.addActionListener(e -> {
             System.out.println("Catalog Button Clicked!");
             dispose();
@@ -98,8 +101,9 @@ public class Enrolment extends InheritanceFrame {
             }
         });
 
-        // 제출 버튼 액션 리스너
+     // submitbtn ActionListener 내부
         submitbtn.addActionListener(e -> {
+            String user_id = getLoggedInUserId();
             String major = majortx.getText();
             String num = numtx.getText();
             String classroom = classtx.getText();
@@ -109,43 +113,16 @@ public class Enrolment extends InheritanceFrame {
             String time = timetx.getText();
             String lectureroom = lectureroomtx.getText();
 
-            DB_connection s = null;
+            boolean enrollmentResult = enrollCourse(user_id, major, num, classroom, subject, course, score, time, lectureroom);
 
-            try {
-                s = new DB_connection();
-
-                if (checkIfRecordExists(s, major, num, classroom, subject, course, score, time, lectureroom)) {
-                    String insertSql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                    try (PreparedStatement insertPs = s.conn.prepareStatement(insertSql)) {
-                        insertPs.setString(1, major);
-                        insertPs.setString(2, num);
-                        insertPs.setString(3, classroom);
-                        insertPs.setString(4, subject);
-                        insertPs.setString(5, course);
-                        insertPs.setString(6, score);
-                        insertPs.setString(7, time);
-                        insertPs.setString(8, lectureroom);
-
-                        int affectedRows = insertPs.executeUpdate();
-
-                        if (affectedRows > 0) {
-                            int choice = showConfirmationDialog();
-                            handleConfirmationChoice(choice);
-                        } else {
-                            JOptionPane.showMessageDialog(Enrolment.this, "수강신청 실패", "오류", JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(Enrolment.this, "강의 정보 없음", "알림", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-                JOptionPane.showMessageDialog(Enrolment.this, "오류 발생: " + e1.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-                System.out.println(e1.toString());
+            if (enrollmentResult) {
+                int choice = showConfirmationDialog();
+                handleConfirmationChoice(choice);
+            } else {
+                JOptionPane.showMessageDialog(Enrolment.this, "수강신청 실패", "오류", JOptionPane.ERROR_MESSAGE);
             }
         });
+
     }
 
     private void JButtonStyle(JButton button, int x, int y, int w, int h, String imageName) {
@@ -166,6 +143,49 @@ public class Enrolment extends InheritanceFrame {
         return textField;
     }
 
+ // 추가: 수강신청 성공 여부 확인
+ // 수정된 enrollCourse 메소드
+    private boolean enrollCourse(String user_id, String major, String num, String classroom, String subject, String course, String score, String time, String lectureroom) {
+        DB_connection s = null;
+
+        try {
+            s = new DB_connection();
+            user_id = getLoggedInUserId(); // 여기서 문자열로 반환된 user_id를 얻음
+
+            if (checkIfRecordExists(s, major, num, classroom, subject, course, score, time, lectureroom)) {
+                String insertSql = "INSERT INTO signup.timetable(major, num, class, subject, course, score, time, lectureroom, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement insertPs = s.conn.prepareStatement(insertSql)) {
+                    insertPs.setString(1, major);
+                    insertPs.setString(2, num);
+                    insertPs.setString(3, classroom);
+                    insertPs.setString(4, subject);
+                    insertPs.setString(5, course);
+                    insertPs.setString(6, score);
+                    insertPs.setString(7, time);
+                    insertPs.setString(8, lectureroom);
+                    insertPs.setString(9, user_id);
+
+                    int affectedRows = insertPs.executeUpdate();
+
+                    return affectedRows > 0;
+                }
+            } else {
+                JOptionPane.showMessageDialog(Enrolment.this, "강의 정보 없음", "알림", JOptionPane.INFORMATION_MESSAGE);
+                return false;
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+            JOptionPane.showMessageDialog(Enrolment.this, "오류 발생: " + e1.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } finally {
+            if (s != null) {
+                s.closeConnection();
+            }
+        }
+    }
+
+    
+ // 추가: timetable_list 테이블에 해당 수강신청 정보가 있는지 확인
     private boolean checkIfRecordExists(DB_connection s, String major, String num, String classroom, String subject, String course, String score, String time, String lectureroom) {
         try {
             String query = "SELECT * FROM signup.timetable_list " +
@@ -189,7 +209,7 @@ public class Enrolment extends InheritanceFrame {
             return false;
         }
     }
-
+    
     private int showConfirmationDialog() {
         Object[] options = {"계속 진행", "시간표"};
         return JOptionPane.showOptionDialog(
@@ -206,24 +226,54 @@ public class Enrolment extends InheritanceFrame {
     private void handleConfirmationChoice(int choice) {
         switch (choice) {
             case 0:
-                majortx.setText("");
-                numtx.setText("");
-                classtx.setText("");
-                subjecttx.setText("");
-                coursetx.setText("");
-                scoretx.setText("");
-                timetx.setText("");
-                lectureroomtx.setText("");
+            	// 계속 신청
+                clearEnrolmentFields();
                 break;
             case 1:
-                showTimetable();
+            	showTimetableDialog();
                 break;
             default:
                 break;
         }
     }
+    
+    private void clearEnrolmentFields() {
+        majortx.setText("");
+        numtx.setText("");
+        classtx.setText("");
+        subjecttx.setText("");
+        coursetx.setText("");
+        scoretx.setText("");
+        timetx.setText("");
+        lectureroomtx.setText("");
+    }
 
-    private String getUserName() {
+    private void showTimetableDialog() {
+        try {
+            String userId = getLoggedInUserId();
+            Vector<Vector<Object>> timetableData = getTimetableData(userId);
+            displayTimetable(timetableData);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "오류 발생: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private String getLoggedInUserId() {
+        if (loggedInUserId == null) {
+            try {
+                DB_connection dbConnection = new DB_connection();
+                loggedInUserId = dbConnection.getLoggedInUserId();
+                System.out.println(loggedInUserId);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "오류 발생: " + e.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return loggedInUserId;
+    }
+
+    private String getUserIdFromDB() {
         try {
             DB_connection dbConnection = new DB_connection();
             return dbConnection.getLoggedInUserId();
@@ -234,27 +284,16 @@ public class Enrolment extends InheritanceFrame {
         }
     }
 
-    // 더 이상 사용하지 않는 메서드이므로 주석 처리
-    // private String getLoggedInUserId() {
-//         return loggedInUserId;
-    // }
-
-
-    private String getLoggedInUserId() {
-        loggedInUserId = getUserName(); // 이 부분을 추가하여 loggedInUserId 값을 설정
-        System.out.println(loggedInUserId);
-        return loggedInUserId;
-    }
-
-    private Vector<Vector<Object>> getTimetableData(String userName) throws SQLException {
+ // 합쳐진 getTimetableData 메소드
+    private Vector<Vector<Object>> getTimetableData(String user_id) throws SQLException {
         DB_connection s = null;
 
         try {
             s = new DB_connection();
-            String query = "SELECT * FROM signup.timetable WHERE major = ?";
+            String query = "SELECT * FROM signup.timetable WHERE user_id = ?";
 
             try (PreparedStatement queryPs = s.conn.prepareStatement(query)) {
-                queryPs.setString(1, userName);
+                queryPs.setString(1, user_id);
 
                 ResultSet resultSet = queryPs.executeQuery();
 
@@ -282,6 +321,7 @@ public class Enrolment extends InheritanceFrame {
         }
     }
 
+ // displayTimetable 메소드 시그니처 변경
     private void displayTimetable(Vector<Vector<Object>> timetableData) {
         JFrame timetableFrame = new JFrame();
         DefaultTableModel tableModel = new DefaultTableModel();
