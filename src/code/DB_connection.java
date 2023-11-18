@@ -50,6 +50,6 @@ public class DB_connection {
     public String getLoggedInUserId() {
         // 여기에 사용자 아이디를 가져오는 코드를 구현
         // 예를 들어, 로그인한 사용자의 아이디를 반환하도록 구현할 수 있음
-        return "loggedInUserId";  // 실제 코드에 맞게 수정
+        return "leeminjun";  // 실제 코드에 맞게 수정
     }
 }
