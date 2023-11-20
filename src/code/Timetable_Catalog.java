@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class Timetable_Catalog extends InheritanceFrame {
 
-    private JButton backbtn = new JButton();
+    private JButton backButton = new JButton();
     private JTable timetableTable;
 
     public Timetable_Catalog() {
         super("TIMETABLE LIST", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
         // 버튼과 테이블 초기화
-        JButtonStyle(backbtn, 920, 20, "Timetable_List_Screen_Back_Button.png");
+        setupButton(backButton, 920, 20, "Timetable_List_Screen_Back_Button.png");
         initializeTable();
 
         // 레이아웃 구성
@@ -35,8 +35,8 @@ public class Timetable_Catalog extends InheritanceFrame {
         add(scrollPane);
 
         // 이벤트 리스너 등록
-        backbtn.addActionListener(e -> {
-            System.out.println("List Button Clicked!"); // 디버깅 출력문 추가
+        backButton.addActionListener(e -> {
+            System.out.println("Back Button Clicked!"); // 디버깅 출력문 추가
             dispose();
             new Enrolment().setVisible(true);
         });
@@ -68,9 +68,9 @@ public class Timetable_Catalog extends InheritanceFrame {
 
         // 데이터베이스에서 테이블 데이터로 채우기
         try {
-            DB_connection s = new DB_connection();
+            DB_connection dbConnection = new DB_connection();
             String query = "SELECT major, num, class, subject, course, score, time, lectureroom FROM signup.timetable_list";
-            PreparedStatement preparedStatement = s.conn.prepareStatement(query);
+            PreparedStatement preparedStatement = dbConnection.conn.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -99,7 +99,7 @@ public class Timetable_Catalog extends InheritanceFrame {
     }
 
     // 버튼 설정 메소드
-    private void JButtonStyle(JButton button, int x, int y, String imageName) {
+    private void setupButton(JButton button, int x, int y, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName)));
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);

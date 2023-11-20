@@ -2,6 +2,7 @@ package code;
 
 import java.awt.Color;
 import java.awt.Font;
+
 import java.sql.PreparedStatement;
 
 import javax.swing.BorderFactory;
@@ -15,51 +16,51 @@ import javax.swing.JTextField;
 
 public class Professor_Join extends InheritanceFrame {
 	
-//	private JButton doublecheckbtn = new JButton();
-	private JButton backbtn = new JButton();
-	private JButton completebtn = new JButton();
+	private JButton backBtn = new JButton();
+	private JButton completeBtn = new JButton();
 	
-	private JTextField nametx = new JTextField();
-	private JTextField idtx = new JTextField();
-	private JPasswordField pwtx = new JPasswordField();
-	private JPasswordField pwcktx = new JPasswordField();
-	private JFormattedTextField teltx = new JFormattedTextField(); // 숫자입력위해
-	private JTextField emailtx = new JTextField();
+	private JTextField nameTx = new JTextField();
+	private JTextField idTx = new JTextField();
+	private JPasswordField pwTx = new JPasswordField();
+	private JPasswordField pwCkTx = new JPasswordField();
+	private JFormattedTextField telTx = new JFormattedTextField(); // 숫자입력위해
+	private JTextField emailTx = new JTextField();
 	
 	public Professor_Join() {
 		super("PROFESSOR JOIN", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setLayout(null);
 		
-//		JButtonStyle(doublecheckbtn, 980, 405, "Professor_Join_Screen_DoubleCheck_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
-		JButtonStyle(backbtn, 10, 35, 150, 65, "Professor_Join_Screen_Back_Button.png");
-		JButtonStyle(completebtn, 950, 35, 450, 65, "Professor_Join_Screen_Complete_Button.png");
+		// 버튼 설정
+		setupButton(backBtn, 10, 35, 150, 65, "Professor_Join_Screen_Back_Button.png");
+		setupButton(completeBtn, 950, 35, 450, 65, "Professor_Join_Screen_Complete_Button.png");
 		
-		TextFieldStyle(nametx, 170);
-		TextFieldStyle(idtx, 245);
-		TextFieldStyle(pwtx, 325);
-		TextFieldStyle(pwcktx, 410);
-		TextFieldStyle(teltx, 500);
-		TextFieldStyle(emailtx, 580);
+		// 텍스트 필드 설정
+		setupTextField(nameTx, 170);
+		setupTextField(idTx, 245);
+		setupTextField(pwTx, 325);
+		setupTextField(pwCkTx, 410);
+		setupTextField(telTx, 500);
+		setupTextField(emailTx, 580);
 			
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Join_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-        backbtn.addActionListener(e -> {
+        backBtn.addActionListener(e -> {
         	dispose();
         	new Professor().setVisible(true);
         });
         
-        completebtn.addActionListener(e -> {
-        	// 완료 : DB 테이블에 값 저장, 메인화면으로 이동
-        	String name = nametx.getText();
-        	String id = idtx.getText();
-        	String pw = new String(pwtx.getPassword());
-        	String pwck = new String(pwcktx.getPassword());
-        	String tel = teltx.getText();
-        	String email = emailtx.getText();
+        completeBtn.addActionListener(e -> {
+        	// 완료: DB 테이블에 값 저장, 메인 화면으로 이동
+        	String name = nameTx.getText();
+        	String id = idTx.getText();
+        	String pw = new String(pwTx.getPassword());
+        	String pwCk = new String(pwCkTx.getPassword());
+        	String tel = telTx.getText();
+        	String email = emailTx.getText();
         	
-        	if (!pw.equals(pwck)) {
+        	if (!pw.equals(pwCk)) {
                 JOptionPane.showMessageDialog(this, "입력한 비밀번호와 일치하지 않습니다.", "오류", JOptionPane.ERROR_MESSAGE);
                 return; // 비밀번호 확인이 일치하지 않으면 회원가입 중단
             }
@@ -75,7 +76,7 @@ public class Professor_Join extends InheritanceFrame {
 	        	ps.setString(1, name);
 	        	ps.setString(2, id);
 	        	ps.setString(3, pw);
-	        	ps.setString(4, pwck);
+	        	ps.setString(4, pwCk);
 	        	ps.setString(5, tel);
 	        	ps.setString(6, email);
 	        	
@@ -90,11 +91,10 @@ public class Professor_Join extends InheritanceFrame {
         	dispose();
         	new Professor().setVisible(true);
         });
-        
 	}
 	
 	// 버튼 설정 메소드
-    private void JButtonStyle(JButton button, int x, int y, int w, int h, String imageName) {
+    private void setupButton(JButton button, int x, int y, int w, int h, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName))); // 버튼 이미지 아이콘 설정
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
@@ -104,7 +104,7 @@ public class Professor_Join extends InheritanceFrame {
     }
     
     // 텍스트필드 설정 메소드
-    private JTextField TextFieldStyle(JTextField textField, int x) {
+    private JTextField setupTextField(JTextField textField, int x) {
         textField.setBounds(500, x, 450, 55);
         textField.setBackground(Color.decode("#D1D9E4"));
         textField.setFont(new Font("SUITE", Font.PLAIN, 18));

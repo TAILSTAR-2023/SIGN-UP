@@ -41,7 +41,7 @@ public class Enrolment extends InheritanceFrame {
 
     // Enrolment 클래스의 생성자
     public Enrolment() {
-        // 상위 클래스(InheritanceFrame)의 생성자를 호출합니다.
+        // 상위 클래스(InheritanceFrame)의 생성자를 호출
         super("ENROLMENT", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
         // 버튼 및 텍스트 필드 초기화 및 스타일링
@@ -85,7 +85,7 @@ public class Enrolment extends InheritanceFrame {
             lectureroomtx.setText("");
         });
 
-     // 카탈로그 버튼 액션 리스너
+        // 카탈로그 버튼 액션 리스너
         catalogbtn.addActionListener(e -> {
             System.out.println("Catalog Button Clicked!");
             dispose();
@@ -101,7 +101,7 @@ public class Enrolment extends InheritanceFrame {
             }
         });
 
-     // submitbtn ActionListener 내부
+        // submitbtn ActionListener 내부
         submitbtn.addActionListener(e -> {
             String user_id = getLoggedInUserId();
             String major = majortx.getText();
@@ -143,8 +143,7 @@ public class Enrolment extends InheritanceFrame {
         return textField;
     }
 
- // 추가: 수강신청 성공 여부 확인
- // 수정된 enrollCourse 메소드
+	// 수강신청 성공 여부 확인
     private boolean enrollCourse(String user_id, String major, String num, String classroom, String subject, String course, String score, String time, String lectureroom) {
         DB_connection s = null;
 
@@ -185,7 +184,7 @@ public class Enrolment extends InheritanceFrame {
     }
 
     
- // 추가: timetable_list 테이블에 해당 수강신청 정보가 있는지 확인
+    // timetable_list 테이블에 해당 수강신청 정보가 있는지 확인
     private boolean checkIfRecordExists(DB_connection s, String major, String num, String classroom, String subject, String course, String score, String time, String lectureroom) {
         try {
             String query = "SELECT * FROM signup.timetable_list " +
@@ -284,7 +283,6 @@ public class Enrolment extends InheritanceFrame {
         }
     }
 
- // 합쳐진 getTimetableData 메소드
     private Vector<Vector<Object>> getTimetableData(String user_id) throws SQLException {
         DB_connection s = null;
 
@@ -321,7 +319,6 @@ public class Enrolment extends InheritanceFrame {
         }
     }
 
- // displayTimetable 메소드 시그니처 변경
     private void displayTimetable(Vector<Vector<Object>> timetableData) {
         JFrame timetableFrame = new JFrame();
         DefaultTableModel tableModel = new DefaultTableModel();

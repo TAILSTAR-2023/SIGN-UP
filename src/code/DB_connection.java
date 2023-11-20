@@ -19,8 +19,7 @@ public class DB_connection {
 
     // DB 초기 세팅
     DB_connection() throws SQLException {
-//        String url = "jdbc:mysql://127.0.0.1/signup?serverTimezone=UTC&allowLoadLocalInfile=true";
-        conn = DriverManager.getConnection(url, user, password);
+    	conn = DriverManager.getConnection(url, user, password);
         stmt = conn.createStatement();
     }
 
@@ -35,7 +34,7 @@ public class DB_connection {
         }
     }
     
-    // 기존 생성자와 연결 코드 등을 포함한 나머지 부분은 유지하고, 아래의 메소드를 추가합니다.
+    // 기존 생성자와 연결 코드 등을 포함한 나머지 부분은 유지하고, 아래의 메소드를 추가
     public void closeConnection() {
         try {
             if (conn != null) {
@@ -48,8 +47,6 @@ public class DB_connection {
     
     // 사용자 아이디 가져오기
     public String getLoggedInUserId() {
-        // 여기에 사용자 아이디를 가져오는 코드를 구현
-        // 예를 들어, 로그인한 사용자의 아이디를 반환하도록 구현할 수 있음
-        return "leeminjun";  // 실제 코드에 맞게 수정
+        return "leeminjun";
     }
 }

@@ -66,7 +66,7 @@ public class Lecture_Management extends InheritanceFrame {
             String time = timetx.getText();
             String lectureroom = lectureroomtx.getText();
 
-            DB_connection s = null; // DB_connection 객체를 선언합니다.
+            DB_connection s = null; // DB_connection 객체를 선언
 
             try {
                 // 데이터베이스에 연결
@@ -165,7 +165,7 @@ public class Lecture_Management extends InheritanceFrame {
             String time = timetx.getText();
             String lectureroom = lectureroomtx.getText();
 
-            DB_connection s = null; // DB_connection 객체를 선언합니다.
+            DB_connection s = null; // DB_connection 객체를 선언
 
             try {
                 // 데이터베이스에 연결
