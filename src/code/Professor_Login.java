@@ -2,6 +2,7 @@ package code;
 
 import java.awt.Color;
 import java.awt.Font;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -15,34 +16,36 @@ import javax.swing.JTextField;
 
 public class Professor_Login extends InheritanceFrame {
 	
-	private JButton backbtn = new JButton();
-	private JButton loginbtn = new JButton();
+	private JButton backBtn = new JButton();
+	private JButton loginBtn = new JButton();
 	
-	private JTextField idtx = new JTextField();
-	private JPasswordField pwtx = new JPasswordField();
+	private JTextField idTx = new JTextField();
+	private JPasswordField pwTx = new JPasswordField();
 	
 	public Professor_Login() {
 		super("PROFESSOR LOGIN", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		setLayout(null);
 		
-		JButtonStyle(backbtn, 10, 35, 150, 65, "Professor_Join_Screen_Back_Button.png");
-		JButtonStyle(loginbtn, 400, 530, 450, 65, "Professor_LogIn_Screen_Login_Button.png");
+		// 버튼 설정
+		setupButton(backBtn, 10, 35, 150, 65, "Professor_Join_Screen_Back_Button.png");
+		setupButton(loginBtn, 400, 530, 450, 65, "Professor_LogIn_Screen_Login_Button.png");
 		
-		TextFieldStyle(idtx, 285);
-		TextFieldStyle(pwtx, 410);
+		// 텍스트 필드 설정
+		setupTextField(idTx, 285);
+		setupTextField(pwTx, 410);
 		
 		JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Professor_Login_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-        backbtn.addActionListener(e -> {
+        backBtn.addActionListener(e -> {
         	dispose();
         	new Professor().setVisible(true);
         });
         
-        loginbtn.addActionListener(e -> {
-        	String id = idtx.getText();
-            String pw = new String(pwtx.getPassword());
+        loginBtn.addActionListener(e -> {
+        	String id = idTx.getText();
+            String pw = new String(pwTx.getPassword());
 
             DB_connection dbConnection;
             try {
@@ -78,11 +81,10 @@ public class Professor_Login extends InheritanceFrame {
             }
         	
         });
-        
 	}
 	
 	// 버튼 설정 메소드
-    private void JButtonStyle(JButton button, int x, int y, int w, int h, String imageName) {
+    private void setupButton(JButton button, int x, int y, int w, int h, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName))); // 버튼 이미지 아이콘 설정
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
@@ -92,7 +94,7 @@ public class Professor_Login extends InheritanceFrame {
     }
     
     // 텍스트필드 설정 메소드
-    private JTextField TextFieldStyle(JTextField textField, int x) {
+    private JTextField setupTextField(JTextField textField, int x) {
         textField.setBounds(500, x, 450, 55);
         textField.setBackground(Color.decode("#D1D9E4"));
         textField.setFont(new Font("SUITE", Font.PLAIN, 18));

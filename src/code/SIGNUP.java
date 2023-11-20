@@ -5,34 +5,34 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class SIGNUP extends InheritanceFrame {
-    private JButton professorbtn = new JButton();
-    private JButton studentbtn = new JButton();
+    private JButton professorBtn = new JButton();
+    private JButton studentBtn = new JButton();
     
     public SIGNUP() {
         super("SIGN - UP", Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         setLayout(null);
         
-        JButtonStyle(professorbtn, 415, 400, "Main_Professor_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
-        JButtonStyle(studentbtn, 415, 500, "Main_Student_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
+        setupButton(professorBtn, 415, 400, "Main_Professor_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
+        setupButton(studentBtn, 415, 500, "Main_Student_Button.png"); // 버튼, x좌표, y좌표, 이미지경로
         
         JLabel lb = new JLabel(new ImageIcon(getClass().getResource("/image/Main_Screen.png")));
         lb.setBounds(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         add(lb);
         
-        professorbtn.addActionListener(e -> {
-        	dispose();
-        	new Professor().setVisible(true);
+        professorBtn.addActionListener(e -> {
+            dispose();
+            new Professor().setVisible(true);
         });
         
-        studentbtn.addActionListener(e -> {
-        	dispose();
-        	new Student().setVisible(true);
+        studentBtn.addActionListener(e -> {
+            dispose();
+            new Student().setVisible(true);
         });
 
     }
     
     // 버튼 설정 메소드
-    private void JButtonStyle(JButton button, int x, int y, String imageName) {
+    private void setupButton(JButton button, int x, int y, String imageName) {
         button.setIcon(new ImageIcon(getClass().getResource("/image/" + imageName))); // 버튼 이미지 아이콘 설정
         button.setBorderPainted(false); // 버튼 테두리 제거 
         button.setContentAreaFilled(false); // 버튼 내부 영역 투명하게 설정 → 배경색상표시X
@@ -40,5 +40,4 @@ public class SIGNUP extends InheritanceFrame {
         button.setBounds(x, y, 450, 65); // 버튼 위치 나타내는 x, y좌표와 버튼 크기 설정인 가로 450, 세로 65
         add(button); // 프레임 추가
     }
-    
 }
